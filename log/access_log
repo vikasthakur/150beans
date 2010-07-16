@@ -1,0 +1,14 @@
+127.0.0.1 - - [16/Jul/2010:01:47:55 +0800] "GET / HTTP/1.1" 200 7027
+127.0.0.1 - - [16/Jul/2010:01:47:56 +0800] "GET /images/rails.png HTTP/1.1" 200 6646
+127.0.0.1 - - [16/Jul/2010:01:47:56 +0800] "GET /favicon.ico HTTP/1.1" 200 -
+127.0.0.1 - - [16/Jul/2010:01:47:59 +0800] "GET /rails/info/properties HTTP/1.1" 500 6668
+127.0.0.1 - - [16/Jul/2010:13:48:23 +0800] "GET / HTTP/1.1" 304 -
+127.0.0.1 - - [16/Jul/2010:13:48:24 +0800] "GET /images/rails.png HTTP/1.1" 304 -
+127.0.0.1 - - [16/Jul/2010:13:48:24 +0800] "GET /favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [16/Jul/2010:13:48:25 +0800] "GET /rails/info/properties HTTP/1.1" 404 219
+127.0.0.1 - - [16/Jul/2010:13:48:27 +0800] "GET /rails/info/properties HTTP/1.1" 404 219
+127.0.0.1 - - [16/Jul/2010:13:48:28 +0800] "GET /rails/info/properties HTTP/1.1" 404 219
+127.0.0.1 - - [16/Jul/2010:13:48:30 +0800] "GET /rails/info/properties HTTP/1.1" 404 219
+127.0.0.1 - - [16/Jul/2010:13:48:50 +0800] "GET / HTTP/1.1" 200 7027
+127.0.0.1 - - [16/Jul/2010:13:48:51 +0800] "GET /images/rails.png HTTP/1.1" 200 6646
+127.0.0.1 - - [16/Jul/2010:13:48:54 +0800] "GET /rails/info/properties HTTP/1.1" 404 219
