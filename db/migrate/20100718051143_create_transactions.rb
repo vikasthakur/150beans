@@ -2,7 +2,6 @@ class CreateTransactions < ActiveRecord::Migration
   def self.up
     create_table :transactions do |t|
       t.date        :date
-      t.boolean     :is_debit,      :default => true
       t.decimal     :amount,        :default => 0.0,  :precision => 19, :scale => 4
       t.string      :notes
       t.integer     :currency_id,   :default => nil

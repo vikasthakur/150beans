@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(:version => 20100718051143) do
 
   create_table "transactions", :force => true do |t|
     t.date     "date"
-    t.boolean  "is_debit",                                     :default => true
     t.decimal  "amount",        :precision => 19, :scale => 4, :default => 0.0
     t.string   "notes"
     t.integer  "currency_id"

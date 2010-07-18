@@ -1,4 +1,6 @@
 class TransactionsController < ApplicationController
+  before_filter :load_account
+  
   # GET /transactions
   # GET /transactions.xml
   def index
@@ -24,7 +26,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   # GET /transactions/new.xml
   def new
-    @transaction = Transaction.new
+    @transaction = Transaction.new(:account_id => @account.id)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +46,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully created.') }
+        format.html { redirect_to([@account, @transaction], :notice => 'Transaction was successfully created.') }
         format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
       else
         format.html { render :action => "new" }
@@ -79,5 +81,9 @@ class TransactionsController < ApplicationController
       format.html { redirect_to(transactions_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def load_account
+    @account = Account.find(params[:account_id])
   end
 end
