@@ -6,8 +6,6 @@
     <th>Symbol</th>
     <th>Name</th>
     <th>Decimals</th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @currencies.each do |currency| %>
@@ -16,8 +14,6 @@
     <td><%= currency.symbol %></td>
     <td><%= currency.name %></td>
     <td><%= currency.decimals %></td>
-    <td><%= link_to 'Edit', edit_currency_path(currency) %></td>
-    <td><%= link_to 'Destroy', currency, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

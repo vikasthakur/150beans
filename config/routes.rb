@@ -1,10 +1,10 @@
 Beans::Application.routes.draw do |map|
-  resources :transactions
+
+  resources :accounts do
+    resources :transactions
+  end
 
   resources :currencies
-
-  resources :accounts
-
   resources :account_types
 
   # The priority is based upon order of creation:

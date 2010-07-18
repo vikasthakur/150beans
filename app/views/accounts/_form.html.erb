@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :account_type_id %><br />
-    <%= f.text_field :account_type_id %>
+    <%= collection_select(@account, :account_type_id, AccountType.all, :id, :name) %>
   </div>
   <div class="actions">
     <%= f.submit %>

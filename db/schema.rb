@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20100718051143) do
   create_table "accounts", :force => true do |t|
     t.string   "name"
     t.integer  "account_type_id"
+    t.integer  "currency_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
