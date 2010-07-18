@@ -19,6 +19,10 @@
     <%= f.label :account_type_id %><br />
     <%= collection_select(@account, :account_type_id, AccountType.all, :id, :name) %>
   </div>
+  <div class="field">
+    <%= f.label :currency_id %><br />
+    <%= collection_select(@account, :currency_id, Currency.all, :id, :name_with_symbol) %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
