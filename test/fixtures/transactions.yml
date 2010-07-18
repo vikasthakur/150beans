@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date: 2010-07-18
+  debit: false
+  amount: 1
+  notes: MyString
+  currency_id: 1
+  exchange_rate: 1.5
+  account_id: 1
+
+two:
+  date: 2010-07-18
+  debit: false
+  amount: 1
+  notes: MyString
+  currency_id: 1
+  exchange_rate: 1.5
+  account_id: 1
