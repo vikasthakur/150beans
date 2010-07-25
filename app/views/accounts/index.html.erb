@@ -3,7 +3,8 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Account type</th>
+    <th>Type</th>
+    <th>Currency</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,8 +13,9 @@
 <% @accounts.each do |account| %>
   <tr>
     <td><%= account.name %></td>
-    <td><%= account.account_type_id %></td>
-    <td><%= link_to 'Show', account %></td>
+    <td><%= account.account_type.name %></td>
+    <td><%= account.currency.code %></td>
+		<td><%= link_to 'Show', account_transactions_path(account) %>
     <td><%= link_to 'Edit', edit_account_path(account) %></td>
     <td><%= link_to 'Destroy', account, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

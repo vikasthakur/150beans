@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :currency_id %><br />
-    <%= f.text_field :currency_id %>
+    <%= collection_select(:transaction, :currency_id, Currency.all, :id, :code) %>
   </div>
   <div class="field">
     <%= f.label :exchange_rate %><br />
@@ -33,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :account_id %><br />
-    <%= f.text_field :account_id %>
+    <%= collection_select(:transaction, :account_id, Account.all, :id, :name) %>
   </div>
   <div class="actions">
     <%= f.submit %>

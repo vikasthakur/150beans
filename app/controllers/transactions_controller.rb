@@ -4,7 +4,8 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.xml
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.all(:conditions => {:account_id => @account.id}, :order => [:date, :id])
+    @sum = Transaction.sum("amount", :conditions => {:account_id => @account.id})
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +47,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to([@account, @transaction], :notice => 'Transaction was successfully created.') }
+        format.html { redirect_to(account_transactions_path(@account), :notice => 'Transaction was successfully created.') }
         format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
       else
         format.html { render :action => "new" }
@@ -62,7 +63,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully updated.') }
+        format.html { redirect_to(account_transactions_path(@account), :notice => 'Transaction was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -2,26 +2,24 @@
 
 <table>
   <tr>
+		<th>ID</th>
     <th>Date</th>
     <th>Amount</th>
     <th>Notes</th>
-    <th>Currency</th>
-    <th>Exchange rate</th>
-    <th>Account</th>
   </tr>
 
 <% @transactions.each do |transaction| %>
   <tr>
+		<td><%= link_to transaction.id, edit_account_transaction_path(@account, transaction) %></td>
     <td><%= transaction.date %></td>
     <td><%= transaction.amount %></td>
     <td><%= transaction.notes %></td>
-    <td><%= transaction.currency_id %></td>
-    <td><%= transaction.exchange_rate %></td>
-    <td><%= transaction.account.name %></td>
   </tr>
 <% end %>
 </table>
 
+Total: <%= symbolled_amount(@account, @sum) %>
 <br />
 
 <%= link_to 'New Transaction', new_account_transaction_path %>
+<%= link_to 'Accounts List', accounts_path %>
