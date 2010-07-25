@@ -1,9 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
+  type: MyString
   name: MyString
-  account_type_id: 1
+  currency_id: 1
 
 two:
+  type: MyString
   name: MyString
-  account_type_id: 1
+  currency_id: 1

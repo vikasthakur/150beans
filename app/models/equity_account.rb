@@ -1,0 +1,2 @@
+class EquityAccount < CreditAccount
+end

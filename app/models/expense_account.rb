@@ -1,0 +1,2 @@
+class ExpenseAccount < DebitAccount
+end

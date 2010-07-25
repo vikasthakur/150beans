@@ -1,0 +1,2 @@
+class LiabilityAccount < CreditAccount
+end

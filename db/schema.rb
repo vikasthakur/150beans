@@ -9,17 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100718051143) do
-
-  create_table "account_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20100725070515) do
 
   create_table "accounts", :force => true do |t|
+    t.string   "type"
     t.string   "name"
-    t.integer  "account_type_id"
+    t.string   "group"
     t.integer  "currency_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -30,17 +25,6 @@ ActiveRecord::Schema.define(:version => 20100718051143) do
     t.string   "name"
     t.integer  "decimals"
     t.string   "symbol"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "transactions", :force => true do |t|
-    t.date     "date"
-    t.decimal  "amount",        :precision => 19, :scale => 4, :default => 0.0
-    t.string   "notes"
-    t.integer  "currency_id"
-    t.float    "exchange_rate",                                :default => 0.0
-    t.integer  "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
