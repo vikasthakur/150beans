@@ -2,13 +2,17 @@ Beans::Application.routes.draw do |map|
   resources :transactions
 
   resources :ledger_entries
+  resources :debit_entries, :controller => 'ledger_entries'
+  resources :credit_entries, :controller => 'ledger_entries'
 
   resources :accounts
-
-
-  resources :accounts do
-    resources :transactions
-  end
+  resources :debit_accounts, :controller => 'accounts'
+  resources :credit_accounts, :controller => 'accounts'
+  resources :asset_accounts, :controller => 'accounts'
+  resources :equity_accounts, :controller => 'accounts'
+  resources :expenses_accounts, :controller => 'accounts'
+  resources :income_accounts, :controller => 'accounts'
+  resources :liability_accounts, :controller => 'accounts'
 
   resources :currencies
   # The priority is based upon order of creation:
