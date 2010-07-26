@@ -1,9 +1,12 @@
 Beans::Application.routes.draw do |map|
   resources :transactions
 
-  resources :ledger_entries
-  resources :debit_entries, :controller => 'ledger_entries'
-  resources :credit_entries, :controller => 'ledger_entries'
+  # Ledger entries should not be reachable. They should only be created internally
+  # by the transactions model and made available as part of an account query.
+  #
+  # resources :ledger_entries
+  # resources :debit_entries, :controller => 'ledger_entries'
+  # resources :credit_entries, :controller => 'ledger_entries'
 
   resources :accounts
   resources :debit_accounts, :controller => 'accounts'
