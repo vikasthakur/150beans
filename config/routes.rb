@@ -1,4 +1,6 @@
 Beans::Application.routes.draw do |map|
+  resources :ledger_entries
+
   resources :accounts
 
 

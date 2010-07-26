@@ -1,0 +1,2 @@
+class DebitEntry < LedgerEntry
+end

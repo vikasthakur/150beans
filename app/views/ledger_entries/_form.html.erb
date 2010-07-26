@@ -1,0 +1,17 @@
+<%= form_for(@ledger_entry) do |f| %>
+  <% if @ledger_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ledger_entry.errors.count, "error") %> prohibited this ledger_entry from being saved:</h2>
+
+      <ul>
+      <% @ledger_entry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

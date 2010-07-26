@@ -1,0 +1,2 @@
+class CreditEntry < LedgerEntries
+end

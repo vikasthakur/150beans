@@ -1,0 +1,21 @@
+<h1>Listing ledger_entries</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ledger_entries.each do |ledger_entry| %>
+  <tr>
+    <td><%= link_to 'Show', ledger_entry %></td>
+    <td><%= link_to 'Edit', edit_ledger_entry_path(ledger_entry) %></td>
+    <td><%= link_to 'Destroy', ledger_entry, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ledger entry', new_ledger_entry_path %>
