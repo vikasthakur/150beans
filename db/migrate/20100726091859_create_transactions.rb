@@ -5,8 +5,8 @@ class CreateTransactions < ActiveRecord::Migration
       t.decimal :amount,        :null => false, :default => 0.0,  :precision => 19, :scale => 4
       t.string  :notes
       t.boolean :is_voided,     :default => false
-      t.integer :debit_entry_id   :null => false
-      t.integer :credit_entry_id  :null => false
+      t.integer :debit_entry_id,  :null => false
+      t.integer :credit_entry_id, :null => false
       
       t.timestamps
     end
