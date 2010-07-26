@@ -1,9 +1,10 @@
 class CreateLedgerEntries < ActiveRecord::Migration
   def self.up
     create_table :ledger_entries do |t|
-      t.date    date
-      t.decial  amount
-      t.integer account_id
+      t.string      :type
+      t.date        :date
+      t.decimal     :amount,        :default => 0.0,  :precision => 19, :scale => 4
+      t.integer     :account_id
       
       t.timestamps
     end
