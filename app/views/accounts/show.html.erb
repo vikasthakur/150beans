@@ -1,20 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Type:</b>
-  <%= @account.type %>
+  <b><%= @account.name %></b> (<%= @account.currency.code %>) <%= type_badge(@account.type) %>
 </p>
 
-<p>
-  <b>Name:</b>
-  <%= @account.name %>
-</p>
-
-<p>
-  <b>Currency:</b>
-  <%= @account.currency_id %>
-</p>
-
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Notes</th>
+		<th>DR</th>
+		<th>CR</th>
+	</tr>
+	
+<% @account.entries.each do |entry| %>
+  <tr>
+    <td><%= link_to entry.date, entry.transaction %></td>
+    <td><%= link_to entry.transaction.notes, entry.transaction %></td>
+    <td align="right"><%= if entry.type=="DebitEntry"; number_to_currency(entry.amount, :unit => ""); end %></td>
+    <td align="right"><%= if entry.type=="CreditEntry"; number_to_currency(entry.amount, :unit => ""); end %></td>
+  </tr>
+<% end %>
+	
+</table>
 
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'Back', accounts_path %>

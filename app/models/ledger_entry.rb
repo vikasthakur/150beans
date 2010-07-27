@@ -3,4 +3,5 @@ class LedgerEntry < ActiveRecord::Base
   validates_presence_of :type
   
   belongs_to :account
+  belongs_to :transaction
 end
