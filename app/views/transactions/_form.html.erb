@@ -11,6 +11,27 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br />
+    <%= f.text_field :notes %>
+  </div>
+  <div class="field">
+    <%= f.label :debit_account_id %><br />
+		<%= f.collection_select(:debit_account_id, Account.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label :credit_account_id %><br />
+		<%= f.collection_select(:credit_account_id, Account.all, :id, :name) %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

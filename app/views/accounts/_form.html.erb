@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :type %><br />
-    <%= f.text_field :type %>
+		<%= f.select(:type, options_for_select(account_types_array) )%>
   </div>
   <div class="field">
     <%= f.label :name %><br />
@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :currency_id %><br />
-    <%= f.text_field :currency_id %>
+		<%= collection_select(:account, :currency_id, Currency.all, :id, :code) %>
   </div>
   <div class="actions">
     <%= f.submit %>

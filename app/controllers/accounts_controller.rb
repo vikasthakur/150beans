@@ -40,7 +40,7 @@ class AccountsController < ApplicationController
   # POST /accounts
   # POST /accounts.xml
   def create
-    @account = Account.new(params[:account])
+    @account = params[:account][:type].constantize.new(params[:account])
 
     respond_to do |format|
       if @account.save

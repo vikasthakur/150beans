@@ -2,6 +2,10 @@
 
 <table>
   <tr>
+    <th>Date</th>
+    <th>Amount</th>
+    <th>Debit</th>
+    <th>Credit</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +13,10 @@
 
 <% @transactions.each do |transaction| %>
   <tr>
+		<td><%= transaction.date %></td>
+		<td><%= transaction.amount %></td>
+		<td><%= link_to transaction.debit_account.name, transaction.debit_account %></td>
+		<td><%= link_to transaction.credit_account.name, transaction.credit_account %></td>
     <td><%= link_to 'Show', transaction %></td>
     <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
     <td><%= link_to 'Destroy', transaction, :confirm => 'Are you sure?', :method => :delete %></td>

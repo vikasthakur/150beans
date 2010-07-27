@@ -32,19 +32,22 @@ ActiveRecord::Schema.define(:version => 20100726091859) do
   create_table "ledger_entries", :force => true do |t|
     t.string   "type"
     t.date     "date"
-    t.decimal  "amount",     :precision => 19, :scale => 4, :default => 0.0
+    t.decimal  "amount",         :default => 0.0
     t.integer  "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "transaction_id"
   end
 
   create_table "transactions", :force => true do |t|
-    t.date     "date",                                                              :null => false
-    t.decimal  "amount",          :precision => 19, :scale => 4, :default => 0.0,   :null => false
+    t.date     "date",                                                                :null => false
+    t.decimal  "amount",            :precision => 19, :scale => 4, :default => 0.0,   :null => false
     t.string   "notes"
-    t.boolean  "is_voided",                                      :default => false
-    t.integer  "debit_entry_id",                                                    :null => false
-    t.integer  "credit_entry_id",                                                   :null => false
+    t.boolean  "is_voided",                                        :default => false, :null => false
+    t.integer  "debit_account_id",                                                    :null => false
+    t.integer  "credit_account_id",                                                   :null => false
+    t.integer  "debit_entry_id",                                   :default => 0,     :null => false
+    t.integer  "credit_entry_id",                                  :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

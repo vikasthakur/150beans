@@ -44,6 +44,10 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
+        tx = @transaction
+        @transaction.create_debit(:date => tx.date, :amount => tx.amount, :account_id => tx.debit_account_id)
+        @transaction.create_credit(:date => tx.date, :amount => tx.amount, :account_id => tx.credit_account_id)
+
         format.html { redirect_to(@transaction, :notice => 'Transaction was successfully created.') }
         format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
       else

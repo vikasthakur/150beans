@@ -12,7 +12,7 @@
 
 <% @accounts.each do |account| %>
   <tr>
-    <td><%= account.type %></td>
+    <td><%= type_badge(account.type) %></td>
     <td><%= account.name %></td>
     <td><%= account.currency_id %></td>
     <td><%= link_to 'Show', account %></td>
