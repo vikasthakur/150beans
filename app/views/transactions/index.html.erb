@@ -4,7 +4,7 @@
   <tr>
     <th>Date</th>
 		<th>Notes</th>
-    <th>Amount</th>
+    <th colspan="2">Amount</th>
     <th>Debit</th>
     <th>Credit</th>
   </tr>
@@ -13,7 +13,8 @@
   <tr>
 		<td><%= transaction.date %></td>
 		<td><%= link_to transaction.notes, transaction %></td>
-		<td align="right"><%= number_to_currency(transaction.amount, :unit => transaction.debit_account.currency.symbol) %></td>
+		<td><%= transaction.debit_account.currency.symbol %></td>
+		<td align="right"><%= number_to_currency(transaction.amount, :unit => "") %></td>
 		<td><%= link_to transaction.debit_account.name, transaction.debit_account %></td>
 		<td><%= link_to transaction.credit_account.name, transaction.credit_account %></td>
   </tr>

@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.xml
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.all(:order => "date")
 
     respond_to do |format|
       format.html # index.html.erb
