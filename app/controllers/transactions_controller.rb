@@ -48,7 +48,7 @@ class TransactionsController < ApplicationController
         @transaction.create_debit(:date => tx.date, :amount => tx.amount, :account_id => tx.debit_account_id)
         @transaction.create_credit(:date => tx.date, :amount => tx.amount, :account_id => tx.credit_account_id)
 
-        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully created.') }
+        format.html { redirect_to(transactions_url, :notice => 'Transaction was successfully created.') }
         format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
       else
         format.html { render :action => "new" }
@@ -64,7 +64,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully updated.') }
+        format.html { redirect_to(transactions_url, :notice => 'Transaction was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
