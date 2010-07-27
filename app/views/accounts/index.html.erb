@@ -14,7 +14,7 @@
   <tr>
     <td><%= type_badge(account.type) %></td>
     <td><%= account.name %></td>
-    <td><%= account.currency_id %></td>
+    <td><%= account.currency.code %></td>
     <td><%= link_to 'Show', account %></td>
     <td><%= link_to 'Edit', edit_account_path(account) %></td>
     <td><%= link_to 'Destroy', account, :confirm => 'Are you sure?', :method => :delete %></td>
