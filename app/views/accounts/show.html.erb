@@ -20,6 +20,12 @@
     <td align="right"><%= if entry.type=="CreditEntry"; number_to_currency(entry.amount, :unit => ""); end %></td>
   </tr>
 <% end %>
+
+	<tr>
+		<td colspan="2">Balance</td>
+    <td align="right"><%= humanize_debit_balance(@account) %></td>
+    <td align="right"><%= humanize_credit_balance(@account) %></td>
+	</tr>
 	
 </table>
 
