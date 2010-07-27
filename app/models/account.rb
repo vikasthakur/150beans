@@ -17,19 +17,33 @@ class Account < ActiveRecord::Base
   def debit_balance?
     debit_total > credit_total
   end
+  def debit_balance
+    if debit_balance?
+      debit_total - credit_total
+    else
+      0
+    end
+  end
   def credit_balance?
-    credit_total < debit_total
+    credit_total > debit_total
+  end
+  def credit_balance
+    if credit_balance?
+      credit_total - debit_total
+    else
+      0
+    end
   end
   def zero_balance?
     credit_total == debit_total
   end
   def balance
     if zero_balance?
-      "0"
+      0
     elsif debit_balance?
-      "#{debit_total - credit_total}"
+      debit_balance
     else # credit_balance?
-      "#{credit_total - debit_total}"
+      credit_balance
     end
   end
 end

@@ -7,7 +7,7 @@
     <th>Currency</th>
     <th>Name</th>
 		<th></th>
-    <th>Balance</th>
+    <th colspan="2">Balance</th>
   </tr>
 
 <% @accounts.each do |account| %>
@@ -17,7 +17,8 @@
     <td><%= account.currency.code %></td>
     <td><%= link_to account.name, account %></td>
 		<td><%= account.currency.symbol %></td>
-    <td align="right"><%= humanize_account_balance(account) %></td>
+    <td align="right"><%= humanize_debit_balance(account) %></td>
+    <td align="right"><%= humanize_credit_balance(account) %></td>
   </tr>
 <% end %>
 </table>
@@ -25,3 +26,5 @@
 <br />
 
 <%= link_to 'New Account', new_account_path %>
+<%= link_to 'Transactions List', transactions_path %>
+<%= link_to 'New Transaction', new_transaction_path %>
