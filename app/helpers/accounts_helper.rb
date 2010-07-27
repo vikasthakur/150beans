@@ -6,7 +6,8 @@ module AccountsHelper
   def account_types_array
     [['Cash','AssetAccount'],
      ['Bank Account','AssetAccount'],
-     ['Reimbursed Expenses','AssetAccount'],
+     ['Reimbursed Expenses','ReceivablesAccount'],
+     ['Payables / Short Term Credit','LiabilityAccount'],
      ['Credit Card','LiabilityAccount'],
      ['TaoBao Account','LiabilityAccount'],
      ['Income','IncomeAccount'],

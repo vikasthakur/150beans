@@ -12,6 +12,7 @@ Beans::Application.routes.draw do |map|
   resources :debit_accounts, :controller => 'accounts'
   resources :credit_accounts, :controller => 'accounts'
   resources :asset_accounts, :controller => 'accounts'
+  resources :receivables_accounts, :controller => 'accounts'
   resources :equity_accounts, :controller => 'accounts'
   resources :expense_accounts, :controller => 'accounts'
   resources :income_accounts, :controller => 'accounts'
