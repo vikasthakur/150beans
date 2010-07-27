@@ -2,22 +2,22 @@
 
 <table>
   <tr>
+    <th></th>
     <th>Type</th>
-    <th>Name</th>
     <th>Currency</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Name</th>
+		<th></th>
+    <th>Balance</th>
   </tr>
 
 <% @accounts.each do |account| %>
   <tr>
-    <td><%= type_badge(account.type) %></td>
-    <td><%= account.name %></td>
-    <td><%= account.currency.code %></td>
-    <td><%= link_to 'Show', account %></td>
-    <td><%= link_to 'Edit', edit_account_path(account) %></td>
     <td><%= link_to 'Destroy', account, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= type_badge(account.type) %></td>
+    <td><%= account.currency.code %></td>
+    <td><%= link_to account.name, account %></td>
+		<td><%= account.currency.symbol %></td>
+    <td align="right"><%= humanize_account_balance(account) %></td>
   </tr>
 <% end %>
 </table>
