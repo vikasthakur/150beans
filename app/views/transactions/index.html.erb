@@ -23,7 +23,8 @@
 <% end %>
 
 	<tr>
-		<td colspan="3">Total Transaction Amount:</td>
+		<td colspan="2">Total Transactions:</td>
+		<td align="center"><%= Transaction.count("id") %></td>
 		<td colspan="2" align="right"><%= number_to_currency(Transaction.sum("amount"), :unit => "") %></td>
 		<td colspan="2">&nbsp;</td>
 	</tr>
