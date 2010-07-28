@@ -4,9 +4,9 @@ class Account < ActiveRecord::Base
   
   belongs_to :currency
   
-  has_many :entries, :class_name => "LedgerEntry"
-  has_many :debits, :class_name => "DebitEntry"
-  has_many :credits, :class_name => "CreditEntry"
+  has_many :entries, :class_name => "LedgerEntry", :order => "date"
+  has_many :debits, :class_name => "DebitEntry", :order => "date"
+  has_many :credits, :class_name => "CreditEntry", :order => "date"
   
   def debit_total
     debits.sum('amount')
