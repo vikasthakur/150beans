@@ -1,5 +1,8 @@
 require 'capistrano/ext/multistage'
+require 'rvm/capistrano'
 
+set :rvm_ruby_string, '1.8.7' # Defaults to 'default'
+set :rvm_type, :user
 set :stages, %w(staging production)
 set :default_stage, "production"
 
@@ -87,5 +90,20 @@ namespace :db do
 
   after "deploy:setup",           "db:setup"   unless fetch(:skip_db_setup, false)
   after "deploy:finalize_update", "db:symlink"
+  after 'deploy:update_code',     "bundler:bundle_new_release"
 
 end
+
+namespace :bundler do
+  task :create_symlink, :roles => :app do
+    shared_dir = File.join(shared_path, 'bundle')
+    release_dir = File.join(current_release, '.bundle')
+    run("mkdir -p #{shared_dir} && ln -s #{shared_dir} #{release_dir}")
+  end
+ 
+  task :bundle_new_release, :roles => :app do
+    bundler.create_symlink
+    run "cd #{release_path} && bundle install --without test"
+  end
+end
+ 
