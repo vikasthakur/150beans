@@ -11,6 +11,7 @@
 
 <% @transactions.each do |transaction| %>
   <tr>
+    <td><%= link_to 'Destroy', transaction, :confirm => 'Are you sure?', :method => :delete %></td>
 		<td><%= transaction.date %></td>
 		<td><%= link_to transaction.notes, transaction %></td>
 		<td><%= transaction.debit_account.currency.symbol %></td>
