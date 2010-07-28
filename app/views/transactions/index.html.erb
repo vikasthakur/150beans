@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+		<th>&nbsp;</th>
     <th>Date</th>
 		<th>Notes</th>
     <th colspan="2">Amount</th>
@@ -20,6 +21,12 @@
 		<td><%= link_to transaction.credit_account.name, transaction.credit_account %></td>
   </tr>
 <% end %>
+
+	<tr>
+		<td colspan="3">Total Transaction Amount:</td>
+		<td colspan="2" align="right"><%= number_to_currency(Transaction.sum("amount"), :unit => "") %></td>
+		<td colspan="2">&nbsp;</td>
+	</tr>
 </table>
 
 <br />
