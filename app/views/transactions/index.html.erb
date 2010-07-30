@@ -1,5 +1,21 @@
 <h1>Listing transactions</h1>
 
+<% form_tag(transactions_path, :method => 'get') do %>
+	<div class="field">
+	  <%= label_tag :start %><br />
+	  <%= text_field_tag :start %>
+	</div>
+
+	<div class="field">
+	  <%= label_tag :end %><br />
+	  <%= text_field_tag :end %>
+	</div>
+
+	<div class="actions">
+	  <%= submit_tag %>
+	</div>
+<% end %>
+
 <table>
   <tr>
 		<th>&nbsp;</th>

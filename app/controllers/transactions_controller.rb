@@ -2,7 +2,16 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.xml
   def index
-    @transactions = Transaction.all(:order => "date")
+    if params[:start]
+      start_date = Date.parse(params[:start])
+      end_date = Date.parse(params[:end])
+    else
+      start_date = Date.today.beginning_of_month
+      end_date = Date.today
+    end
+    
+    conditions = ["date >= ? AND date <= ?", start_date, end_date]
+    @transactions = Transaction.where(conditions).order("date")
 
     respond_to do |format|
       format.html # index.html.erb
