@@ -2,20 +2,11 @@ module AccountsHelper
   def type_badge(account_type)
     account_type.to_s.split(/Account/)
   end
-  def humanize_debit_balance(account)
-    balance = number_to_currency(account.debit_balance, :unit => "")
-    if account.debit_balance?
-      "#{balance} DR"
+  def humanize_amount(amount)
+    if amount == 0
+      "-.--"
     else
-      ""
-    end
-  end
-  def humanize_credit_balance(account)
-    balance = number_to_currency(account.credit_balance, :unit => "")
-    if account.credit_balance?
-      "#{balance} CR"
-    else
-      ""
+      number_to_currency(amount, :unit => "")
     end
   end
   
