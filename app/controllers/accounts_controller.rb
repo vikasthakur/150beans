@@ -14,16 +14,6 @@ class AccountsController < ApplicationController
   # GET /accounts/1.xml
   def show
     @account = Account.find(params[:id])
-    if params[:start]
-      start_date = Date.parse(params[:start])
-      end_date = Date.parse(params[:end])
-    else
-      start_date = Date.today.beginning_of_month
-      end_date = Date.today
-    end
-    
-    conditions = ["date >= ? AND date <= ?", start_date, end_date]
-    @entries = @account.entries.where(conditions).order("date")
 
     respond_to do |format|
       format.html # show.html.erb

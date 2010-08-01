@@ -4,22 +4,6 @@
   <b><%= @account.name %></b> (<%= @account.currency.code %>) <%= type_badge(@account.type) %>
 </p>
 
-<% form_tag(@account, :method => 'get') do %>
-	<div class="field">
-	  <%= label_tag :start %><br />
-	  <%= text_field_tag :start %>
-	</div>
-
-	<div class="field">
-	  <%= label_tag :end %><br />
-	  <%= text_field_tag :end %>
-	</div>
-
-	<div class="actions">
-	  <%= submit_tag %>
-	</div>
-<% end %>
-
 <table>
 	<tr>
 		<th>Name</th>
@@ -28,7 +12,7 @@
 		<th>CR</th>
 	</tr>
 	
-<% @entries.each do |entry| %>
+<% @account.entries.each do |entry| %>
   <tr>
     <td><%= link_to entry.date, entry.transaction %></td>
     <td><%= link_to entry.transaction.notes, entry.transaction %></td>
@@ -39,8 +23,8 @@
 
 	<tr>
 		<td colspan="2">Balance</td>
-    <td align="right">DR <%= humanize_amount(@entries.where("type = 'DebitEntry'").sum("amount")) %></td>
-    <td align="right">CR <%= humanize_amount(@entries.where("type = 'CreditEntry'").sum("amount")) %></td>
+    <td align="right"><%= humanize_debit_balance(@account) %></td>
+    <td align="right"><%= humanize_credit_balance(@account) %></td>
 	</tr>
 	
 </table>
