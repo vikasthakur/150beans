@@ -14,7 +14,32 @@ class AccountsController < ApplicationController
   # GET /accounts/1.xml
   def show
     @account = Account.find(params[:id])
+    if params[:filter]
+      if params[:filter] == 'all'
+        @from_date = Date.civil+1
+        @to_date = Date.today
+      elsif params[:filter] == 'ytd'
+        @from_date = Date.today.beginning_of_year
+        @to_date = Date.today
+      elsif params[:filter] == 'mtd'
+        @from_date = Date.today.beginning_of_month
+        @to_date = Date.today
+      elsif params[:filter] == 'custom'
+        @from_date = Date.parse(params[:start])
+        @to_date = Date.parse(params[:end])
+      end
+    else # default uses mtd
+      @from_date = Date.today.beginning_of_month
+      @to_date = Date.today
+    end
 
+    @entries = @account.entries.between(@from_date, @to_date)
+    @opening_balance = @account.balance_to_date(@from_date - 1)
+    @closing_balance = @account.balance_to_date(@to_date)
+    @period_activity = @account.balance_in_period(@from_date, @to_date)
+    @debits_total = @account.debits.between(@from_date, @to_date).sum("amount")
+    @credits_total = @account.debits.between(@from_date, @to_date).sum("amount")
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @account }

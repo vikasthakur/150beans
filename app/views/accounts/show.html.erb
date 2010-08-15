@@ -1,8 +1,33 @@
+<h1>
+	<%= @account.name %>
+	<div class="badge"><%= @account.currency.code %></div>
+	<div class="badge"><%= type_badge(@account.type) %></div>
+</h1>
+
+<a href="<%= account_url(@account, :filter => 'all') %>">ALL</a>
+<a href="<%= account_url(@account, :filter => 'mtd') %>">MTD</a>
+<a href="<%= account_url(@account, :filter => 'ytd') %>">YTD</a>
+<% form_tag(@account, :method => 'get') do %>
+  <%= label_tag :custom %><br />
+  <%= text_field_tag :start %> - 
+  <%= text_field_tag :end %>
+	<%= hidden_field_tag("filter", 'custom') %>
+
+	<div class="actions">
+	  <%= submit_tag %>
+	</div>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b><%= @account.name %></b> (<%= @account.currency.code %>) <%= type_badge(@account.type) %>
-</p>
+<dl>
+	<dt>Opening Balance</dt>
+	  <dd><%= humanize_amount(@opening_balance) %></dd>
+	<dt>Period Activity</dt>
+		<dd><%= humanize_amount(@period_activity) %></dd>
+	<dt>Closing Balance</dt>
+	  <dd><%= humanize_amount(@closing_balance) %></dd>
+</dl>
 
 <table>
 	<tr>
@@ -12,7 +37,7 @@
 		<th>CR</th>
 	</tr>
 	
-<% @account.entries.each do |entry| %>
+<% @entries.each do |entry| %>
   <tr>
     <td><%= link_to entry.date, entry.transaction %></td>
     <td><%= link_to entry.transaction.notes, entry.transaction %></td>
@@ -22,9 +47,9 @@
 <% end %>
 
 	<tr>
-		<td colspan="2">Balance</td>
-    <td align="right"><%= humanize_debit_balance(@account) %></td>
-    <td align="right"><%= humanize_credit_balance(@account) %></td>
+		<td colspan="2">Totals</td>
+    <td align="right"><%= humanize_debit_total(@debits_total) %></td>
+    <td align="right"><%= humanize_credit_total(@credits_total) %></td>
 	</tr>
 	
 </table>

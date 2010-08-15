@@ -21,12 +21,6 @@
     <td align="right"><%= humanize_credit_balance(account) %></td>
   </tr>
 <% end %>
-
-	<tr>
-		<td colspan="5">Total Balance</td>
-		<td align="right"><%= number_to_currency(Account.all.collect{ |a| a.debit_balance }.sum, :unit => "") %> DR</td>
-		<td align="right"><%= number_to_currency(Account.all.collect{ |a| a.credit_balance }.sum, :unit => "") %> CR</td>
-	</tr>
 </table>
 
 <br />

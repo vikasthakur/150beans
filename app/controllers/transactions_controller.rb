@@ -2,17 +2,22 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.xml
   def index
-    if params[:start]
-      start_date = Date.parse(params[:start])
-      end_date = Date.parse(params[:end])
-    else
-      start_date = Date.today.beginning_of_month
-      end_date = Date.today
+    if params[:filter]
+      if params[:filter] == 'all'
+        @transactions = Transaction.order("date")   # Transaction.all.sum() triggers Rails3 bug
+      elsif params[:filter] == 'ytd'
+        @transactions = Transaction.ytd
+      elsif params[:filter] == 'mtd'
+        @transactions = Transaction.mtd
+      elsif params[:filter] == 'custom'
+        start_date = Date.parse(params[:start])
+        end_date = Date.parse(params[:end])
+        @transactions = Transaction.between(start_date, end_date)
+      end
+    else # default uses mtd
+      @transactions = Transaction.mtd
     end
     
-    conditions = ["date >= ? AND date <= ?", start_date, end_date]
-    @transactions = Transaction.where(conditions).order("date")
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @transactions }

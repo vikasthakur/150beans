@@ -3,17 +3,29 @@ module AccountsHelper
     account_type.to_s.split(/Account/)
   end
   def humanize_debit_balance(account)
-    balance = number_to_currency(account.debit_balance, :unit => "")
     if account.debit_balance?
-      "#{balance} DR"
+      "#{number_to_currency(account.balance.abs, :unit => "")} DR"
     else
       ""
     end
   end
   def humanize_credit_balance(account)
-    balance = number_to_currency(account.credit_balance, :unit => "")
     if account.credit_balance?
-      "#{balance} CR"
+      "#{number_to_currency(account.balance.abs, :unit => "")} CR"
+    else
+      ""
+    end
+  end
+  def humanize_debit_total(total)
+    if total > 0
+      "#{humanize_amount(total)} DR"
+    else
+      ""
+    end
+  end
+  def humanize_credit_total(total)
+    if total > 0
+      "#{humanize_amount(total)} CR"
     else
       ""
     end

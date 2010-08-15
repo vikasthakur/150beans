@@ -54,3 +54,17 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+.badge {
+display:inline;
+position:relative;
+top:-0.4em;
+font-size:0.5em;
+font-weight:normal;
+font-color:#f9f9f9;
+background-color:#87E968;
+padding:0.2em 0.5em;
+-moz-border-radius: 4px/*{cornerRadius}*/; 
+-webkit-border-radius: 4px/*{cornerRadius}*/; 
+border-radius: 4px/*{cornerRadius}*/;
+}

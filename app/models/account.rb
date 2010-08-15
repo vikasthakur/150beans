@@ -8,42 +8,33 @@ class Account < ActiveRecord::Base
   has_many :debits, :class_name => "DebitEntry", :order => "date"
   has_many :credits, :class_name => "CreditEntry", :order => "date"
   
-  def debit_total
-    debits.sum('amount')
+  def debit_total_in_period(from, to)
+    debits.between(from,to).sum('amount')
   end
-  def credit_total
-    credits.sum('amount')
+  def credit_total_in_period(from, to)
+    credits.between(from, to).sum('amount')
   end
+  def balance_in_period(from, to)
+    raise NotImplementedError.new("You must implement balance_in_period(from, to).")
+  end
+  
+  def balance_to_date(date)
+    balance_in_period(Date.civil, date)
+  end
+  def balance_mtd
+    balance_in_period(Date.today.beginning_of_month, Date.today)
+  end
+  def balance_ytd
+    balance_in_period(Date.today.beginning_of_year, Date.today)
+  end
+  def balance # current balance
+    balance_to_date(Date.today)
+  end
+
   def debit_balance?
-    debit_total > credit_total
-  end
-  def debit_balance
-    if debit_balance?
-      debit_total - credit_total
-    else
-      0
-    end
+    raise NotImplementedError.new("You must implement debit_balance?.")    
   end
   def credit_balance?
-    credit_total > debit_total
-  end
-  def credit_balance
-    if credit_balance?
-      credit_total - debit_total
-    else
-      0
-    end
-  end
-  def zero_balance?
-    credit_total == debit_total
-  end
-  def balance
-    if zero_balance?
-      0
-    elsif debit_balance?
-      debit_balance
-    else # credit_balance?
-      credit_balance
-    end
-  end
+    raise NotImplementedError.new("You must implement credit_balance?.")    
+  end    
 end
