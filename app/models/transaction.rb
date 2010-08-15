@@ -4,7 +4,7 @@ class Transaction < ActiveRecord::Base
   has_one :debit, :class_name => "DebitEntry", :dependent => :destroy
   has_one :credit, :class_name => "CreditEntry", :dependent => :destroy
   
-  default_scope :order => "date"
+  default_scope :order => "date, id"
   
   named_scope :ending, lambda { |to| { :conditions => ["date <= ?", to] } }
   named_scope :starting, lambda { |date| { :conditions => ["date >= ?", from] } }

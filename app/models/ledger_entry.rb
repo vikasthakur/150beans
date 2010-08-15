@@ -5,7 +5,7 @@ class LedgerEntry < ActiveRecord::Base
   belongs_to :account
   belongs_to :transaction
   
-  default_scope :order => "date"
+  default_scope :order => "date, id"
   
   named_scope :ending, lambda { |to| { :conditions => ["date <= ?", to] } }
   named_scope :starting, lambda { |from| { :conditions => ["date >= ?", from] } }
