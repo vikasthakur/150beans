@@ -43,7 +43,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   # GET /transactions/new.xml
   def new
-    @transaction = Transaction.new
+    @transaction = Transaction.new(:date => Date.today)
 
     respond_to do |format|
       format.html # new.html.erb

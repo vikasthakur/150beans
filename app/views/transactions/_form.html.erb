@@ -1,3 +1,9 @@
+<script type="text/javascript">
+$(function() {
+	$("#transaction_date").datepicker({showOtherMonths: true, selectOtherMonths: true});
+});
+</script>
+
 <%= form_for(@transaction) do |f| %>
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +19,7 @@
 
   <div class="field">
     <%= f.label :date %><br />
-    <%= f.date_select :date %>
+    <%= f.text_field :date %>
   </div>
   <div class="field">
     <%= f.label :amount %><br />
