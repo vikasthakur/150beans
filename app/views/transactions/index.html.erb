@@ -4,22 +4,22 @@
 $(function() {
 	$("#from_date").datepicker({showOtherMonths: true, selectOtherMonths: true});
 	$("#to_date").datepicker({showOtherMonths: true, selectOtherMonths: true});
+	$("a", ".date_filter").button();
 });
 </script>
 
-<a href="<%= transactions_path(:filter => 'all') %>">ALL</a>
-<a href="<%= transactions_path(:filter => 'mtd') %>">MTD</a>
-<a href="<%= transactions_path(:filter => 'ytd') %>">YTD</a>
-<% form_tag(transactions_path, :method => 'get') do %>
-  <%= label_tag :custom %><br />
-  <%= text_field_tag :from_date, @from_date %> - 
-  <%= text_field_tag :to_date, @to_date %>
-	<%= hidden_field_tag("filter", 'custom') %>
+<div class="date_filter">
+	<a href="<%= transactions_path(:filter => 'all') %>">ALL</a>
+	<a href="<%= transactions_path(:filter => 'mtd') %>">MTD</a>
+	<a href="<%= transactions_path(:filter => 'ytd') %>">YTD</a>
+	<% form_tag(transactions_path, :method => 'get', :class => 'inline_form') do %>
+	  <%= text_field_tag :from_date, @from_date %> - 
+	  <%= text_field_tag :to_date, @to_date %>
+		<%= hidden_field_tag("filter", 'custom') %>
 
-	<div class="actions">
-	  <%= submit_tag %>
-	</div>
-<% end %>
+	  <%= submit_tag "Custom" %>
+	<% end %>
+</div>
 
 <table>
   <tr>

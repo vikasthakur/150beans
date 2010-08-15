@@ -9,22 +9,22 @@
 $(function() {
 	$("#from_date").datepicker({showOtherMonths: true, selectOtherMonths: true});
 	$("#to_date").datepicker({showOtherMonths: true, selectOtherMonths: true});
+	$("input:submit, a", ".date_filter").button();
 });
 </script>
 
-<a href="<%= account_url(@account, :filter => 'all') %>">ALL</a>
-<a href="<%= account_url(@account, :filter => 'mtd') %>">MTD</a>
-<a href="<%= account_url(@account, :filter => 'ytd') %>">YTD</a>
-<% form_tag(@account, :method => 'get') do %>
-  <%= label_tag :custom %><br />
-  <%= text_field_tag :from_date, @from_date %> - 
-  <%= text_field_tag :to_date, @to_date %>
-	<%= hidden_field_tag("filter", 'custom') %>
+<div class="date_filter">
+	<a href="<%= account_url(@account, :filter => 'all') %>">ALL</a>
+	<a href="<%= account_url(@account, :filter => 'mtd') %>">MTD</a>
+	<a href="<%= account_url(@account, :filter => 'ytd') %>">YTD</a>
+	<% form_tag(@account, :method => 'get', :class => 'inline_form') do %>
+	  <%= text_field_tag :from_date, @from_date %> - 
+	  <%= text_field_tag :to_date, @to_date %>
+		<%= hidden_field_tag("filter", 'custom') %>
 
-	<div class="actions">
-	  <%= submit_tag %>
-	</div>
-<% end %>
+	  <%= submit_tag "Custom" %>
+	<% end %>
+</div>
 
 <p id="notice"><%= notice %></p>
 
