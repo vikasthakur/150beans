@@ -4,19 +4,24 @@ class TransactionsController < ApplicationController
   def index
     if params[:filter]
       if params[:filter] == 'all'
-        @transactions = Transaction.order("date")   # Transaction.all.sum() triggers Rails3 bug
+        @from_date = Date.civil+1
+        @to_date = Date.today
       elsif params[:filter] == 'ytd'
-        @transactions = Transaction.ytd
+        @from_date = Date.today.beginning_of_year
+        @to_date = Date.today
       elsif params[:filter] == 'mtd'
-        @transactions = Transaction.mtd
+        @from_date = Date.today.beginning_of_month
+        @to_date = Date.today
       elsif params[:filter] == 'custom'
-        start_date = Date.parse(params[:start])
-        end_date = Date.parse(params[:end])
-        @transactions = Transaction.between(start_date, end_date)
+        @from_date = Date.parse(params[:from_date])
+        @to_date = Date.parse(params[:to_date])
       end
     else # default uses mtd
-      @transactions = Transaction.mtd
+      @from_date = Date.today.beginning_of_month
+      @to_date = Date.today
     end
+
+    @entries = Transaction.between(@from_date, @to_date)
     
     respond_to do |format|
       format.html # index.html.erb

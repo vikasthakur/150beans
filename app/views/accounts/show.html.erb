@@ -4,13 +4,21 @@
 	<div class="badge"><%= type_badge(@account.type) %></div>
 </h1>
 
+
+<script type="text/javascript">
+$(function() {
+	$("#from_date").datepicker({showOtherMonths: true, selectOtherMonths: true});
+	$("#to_date").datepicker({showOtherMonths: true, selectOtherMonths: true});
+});
+</script>
+
 <a href="<%= account_url(@account, :filter => 'all') %>">ALL</a>
 <a href="<%= account_url(@account, :filter => 'mtd') %>">MTD</a>
 <a href="<%= account_url(@account, :filter => 'ytd') %>">YTD</a>
 <% form_tag(@account, :method => 'get') do %>
   <%= label_tag :custom %><br />
-  <%= text_field_tag :start %> - 
-  <%= text_field_tag :end %>
+  <%= text_field_tag :from_date, @from_date %> - 
+  <%= text_field_tag :to_date, @to_date %>
 	<%= hidden_field_tag("filter", 'custom') %>
 
 	<div class="actions">

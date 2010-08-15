@@ -25,8 +25,8 @@ class AccountsController < ApplicationController
         @from_date = Date.today.beginning_of_month
         @to_date = Date.today
       elsif params[:filter] == 'custom'
-        @from_date = Date.parse(params[:start])
-        @to_date = Date.parse(params[:end])
+        @from_date = Date.parse(params[:from_date])
+        @to_date = Date.parse(params[:to_date])
       end
     else # default uses mtd
       @from_date = Date.today.beginning_of_month
