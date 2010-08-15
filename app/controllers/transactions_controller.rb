@@ -21,7 +21,7 @@ class TransactionsController < ApplicationController
       @to_date = Date.today
     end
 
-    @entries = Transaction.between(@from_date, @to_date)
+    @transactions = Transaction.between(@from_date, @to_date)
     
     respond_to do |format|
       format.html # index.html.erb
