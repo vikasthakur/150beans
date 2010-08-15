@@ -39,6 +39,7 @@ $(function() {
 
 <table>
 	<tr>
+		<th>&nbsp;</th>
 		<th>Name</th>
 		<th>Notes</th>
 		<th>DR</th>
@@ -47,6 +48,7 @@ $(function() {
 	
 <% @entries.each do |entry| %>
   <tr>
+    <td><%= link_to 'Destroy', entry.transaction, :confirm => 'Are you sure?', :method => :delete %></td>
     <td><%= link_to entry.date, entry.transaction %></td>
     <td><%= link_to entry.transaction.notes, entry.transaction %></td>
     <td align="right"><%= if entry.type=="DebitEntry"; number_to_currency(entry.amount, :unit => ""); end %></td>
