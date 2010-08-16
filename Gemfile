@@ -22,6 +22,7 @@ gem 'capistrano'
 # gem 'nokogiri', '1.4.1'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
+gem 'acts-as-taggable-on'
 
 # Bundle gems for certain environments:
 # gem 'rspec', :group => :test

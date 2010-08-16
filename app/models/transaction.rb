@@ -1,4 +1,9 @@
 class Transaction < ActiveRecord::Base
+  acts_as_taggable
+  acts_as_taggable_on :categories
+  
+  before_save :update_tags
+  
   belongs_to :debit_account, :class_name => "Account", :foreign_key => "debit_account_id"
   belongs_to :credit_account, :class_name => "Account", :foreign_key => "credit_account_id"
   has_one :debit, :class_name => "DebitEntry", :dependent => :destroy
@@ -12,4 +17,8 @@ class Transaction < ActiveRecord::Base
   
   named_scope :mtd, lambda { { :conditions => ["date BETWEEN ? AND ?", Date.today.beginning_of_month, Date.today] } }
   named_scope :ytd, lambda { { :conditions => ["date BETWEEN ? AND ?", Date.today.beginning_of_year, Date.today] } }
+  
+  def update_tags
+    self.tag_list = self.notes.split(" ").collect{ |x| x if x.index("\#") }.compact
+  end
 end

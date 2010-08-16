@@ -19,9 +19,14 @@ class TransactionsController < ApplicationController
     else # default uses mtd
       @from_date = Date.today.beginning_of_month
       @to_date = Date.today
-    end
+    end    
 
     @transactions = Transaction.between(@from_date, @to_date)
+    
+    if params[:tags]
+      @transactions = @transactions.tagged_with(params[:tags])
+      @tags = params[:tags]
+    end
     
     respond_to do |format|
       format.html # index.html.erb
