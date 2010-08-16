@@ -38,7 +38,7 @@ class AccountsController < ApplicationController
     @closing_balance = @account.balance_to_date(@to_date)
     @period_activity = @account.balance_in_period(@from_date, @to_date)
     @debits_total = @account.debits.between(@from_date, @to_date).sum("amount")
-    @credits_total = @account.debits.between(@from_date, @to_date).sum("amount")
+    @credits_total = @account.credits.between(@from_date, @to_date).sum("amount")
     
     respond_to do |format|
       format.html # show.html.erb
