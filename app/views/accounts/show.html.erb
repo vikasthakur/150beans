@@ -48,7 +48,7 @@ $(function() {
 	
 <% @entries.each do |entry| %>
   <tr>
-    <td><%= link_to 'Delete', delete_transaction_path(entry.transaction), :class => 'delete', :method => :delete %></td>
+    <td><%= link_to 'Delete', entry.transaction, :class => 'delete', :method => :delete %></td>
     <td><%= link_to entry.date, entry.transaction %></td>
     <td><%= link_to entry.transaction.notes, entry.transaction %></td>
     <td align="right"><%= if entry.type=="DebitEntry"; number_to_currency(entry.amount, :unit => ""); end %></td>
