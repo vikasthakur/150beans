@@ -1,2 +1,0 @@
-class DebitEntry < LedgerEntry
-end

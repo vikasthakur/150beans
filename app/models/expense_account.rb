@@ -1,2 +1,0 @@
-class ExpenseAccount < DebitAccount
-end

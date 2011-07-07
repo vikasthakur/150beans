@@ -1,2 +1,0 @@
-class EquityAccount < CreditAccount
-end

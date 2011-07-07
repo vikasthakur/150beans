@@ -1,2 +1,0 @@
-class CreditEntry < LedgerEntry
-end
