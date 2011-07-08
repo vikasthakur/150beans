@@ -2,11 +2,7 @@
 #	Application
 #############################################################
 
-set :application, "beans"
 set :deploy_to, "/var/www/apps/production/beans"
-set :dbuser, "beans"
-set :dbhost, "localhost"
-set :dbport, "28017"
 
 #############################################################
 #	Settings
@@ -31,10 +27,7 @@ role :db, domain, :primary => true
 #	Git
 #############################################################
 
-set :scm, :git
 set :branch, "master"
-set :repository, "ssh://git.beyond150.com/var/git/beans.git"
-set :deploy_via, :remote_cache
 
 #############################################################
 #	Passenger
