@@ -32,7 +32,7 @@ role :db, domain, :primary => true
 #############################################################
 
 set :scm, :git
-set :branch, "minified"
+set :branch, "test"
 set :repository, "ssh://git.beyond150.com/var/git/beans.git"
 set :deploy_via, :remote_cache
 
