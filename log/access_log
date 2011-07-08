@@ -4397,3 +4397,4 @@
 127.0.0.1 - - [07/Jul/2011:15:06:53 +0800] "GET /javascripts/rails.js?1281929184 HTTP/1.1" 200 4779
 127.0.0.1 - - [07/Jul/2011:15:06:53 +0800] "GET /javascripts/jquery-ui-1.8.4.custom.min.js?1281808268 HTTP/1.1" 200 202203
 127.0.0.1 - - [07/Jul/2011:15:06:54 +0800] "GET /javascripts/application.js?1279215796 HTTP/1.1" 200 148
+127.0.0.1 - - [09/Jul/2011:00:03:57 +0800] "GET /favicon.ico HTTP/1.1" 200 -

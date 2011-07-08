@@ -1,0 +1,33 @@
+# database template
+
+defaults: &defaults
+  host: <%= dbhost %>
+  # port: <%= dbport %>
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019
+
+development:
+  <<: *defaults
+  database: beans_development
+
+test:
+  <<: *defaults
+  # username: <%= dbuser %>
+  # password: <%= Capistrano::CLI.ui.ask("Enter TEST password for #{dbuser}: ") %>
+  database: beans_test
+
+# uncomment below for multi-staged deployments
+# staging:
+  # <<: *defaults
+  # username: <%= dbuser %>
+  # password: <%### uncomment ###= Capistrano::CLI.ui.ask("Enter STAGING password for #{dbuser}:") %>
+  # database: <%= application %>_staging
+
+production:
+  <<: *defaults
+  # username: <%= dbuser %>
+  # password: <%= Capistrano::CLI.ui.ask("Enter PRODUCTION password for #{dbuser}: ") %>
+  database: <%= application %>_production
