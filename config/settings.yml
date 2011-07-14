@@ -1,5 +1,5 @@
 base: &base
-  :site_name: beans
+  :site_name: 150beans
   :admin_email: beans@beyond150.com
   :notifier_email: apps@beyond150.com
 
