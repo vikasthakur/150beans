@@ -2,10 +2,9 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.rc4'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
+# using mongoid instead of mysql or sqlite3
+gem "mongoid", "~> 2.0"
+gem "bson_ext", "~> 1.3"
 
 # Asset template engines
 gem 'sass-rails', "~> 3.1.0.rc"

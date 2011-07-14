@@ -1,0 +1,22 @@
+development:
+  host: localhost
+  database: beans_development
+
+test:
+  host: localhost
+  database: beans_test
+
+# production settings are set by capistrano
+# 
+# set these environment variables on your prod server
+# production:
+#   host: <%= ENV['MONGOID_HOST'] %>
+#   port: <%= ENV['MONGOID_PORT'] %>
+#   username: <%= ENV['MONGOID_USERNAME'] %>
+#   password: <%= ENV['MONGOID_PASSWORD'] %>
+#   database: <%= ENV['MONGOID_DATABASE'] %>
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019
