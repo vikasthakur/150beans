@@ -22,6 +22,9 @@ gem 'capistrano'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+# application gems
+gem 'haml'
+
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
