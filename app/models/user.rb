@@ -2,12 +2,12 @@ class User
   include Mongoid::Document
   field :name, :type => String
   field :email, :type => String
-  embeds_many :services
+  embeds_many :identities
   
   def self.create_with_omniauth(auth)
     begin
       create! do |user|
-        user.services.new(provider: auth['provider'], uid: auth['uid'])
+        user.identities.new(provider: auth['provider'], uid: auth['uid'])
         if auth['user_info']
           user.name = auth['user_info']['name'] if auth['user_info']['name'] # Twitter, Google, Yahoo, GitHub
           user.email = auth['user_info']['email'] if auth['user_info']['email'] # Google, Yahoo, GitHub

@@ -1,4 +1,4 @@
-class Service
+class Identity
   include Mongoid::Document
   field :provider, :type => String
   field :uid, :type => String

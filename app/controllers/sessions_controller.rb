@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   # auth returned by the service provider when authentication is succesful.
   def create
     auth = request.env["omniauth.auth"]
-    user = User.where("services.provider" => auth['provider'], "services.uid" => auth['uid']).first || User.create_with_omniauth(auth)
+    user = User.where("identities.provider" => auth['provider'], "identities.uid" => auth['uid']).first || User.create_with_omniauth(auth)
     session[:user_id] = user.id
     redirect_to root_url, :notice => "Signed in!"
   end
