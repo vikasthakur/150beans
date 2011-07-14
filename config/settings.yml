@@ -1,0 +1,16 @@
+base: &base
+  :site_name: beans
+  :admin_email: beans@beyond150.com
+  :notifier_email: apps@beyond150.com
+
+development: &non_production_settings
+  :site_host: beans.dev
+  <<: *base
+  
+test:
+  :site_host: btest.beyond150.com
+  <<: *base
+
+production:
+  :site_host: b.beyond150.com
+  <<: *base
