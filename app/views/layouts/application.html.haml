@@ -8,5 +8,9 @@
     = csrf_meta_tags
   
   %body
+    .flash
+      - flash.each do |type, message| -
+        .message{:class => "#{type}"}
+          = message
     = yield
     = yield :scripts
