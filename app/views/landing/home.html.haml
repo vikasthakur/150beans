@@ -5,10 +5,4 @@
     %section.journal
       %h1= g.name
       = render :partial => 'transactions/form', :locals => { :journal => g.journal }
-        
-      - g.journal.transactions.each do |t|
-        %article.transaction
-          %ul
-            %li= t.notes
-            %li= t.date
-            %li= t.amount
+      = render :partial => 'transactions/list', :locals => { :transactions => g.journal.transactions }

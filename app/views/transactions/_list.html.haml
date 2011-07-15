@@ -1,0 +1,3 @@
+%ol.list
+  - transactions.each do |t|
+    %li= render :partial => 'transactions/entry', :locals => { :transaction => t }
