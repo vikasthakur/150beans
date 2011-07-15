@@ -9,9 +9,6 @@
   
   %body
     = render :partial => 'shared/usernav'
-    .flash
-      - flash.each do |type, message| -
-        .message{:class => "#{type}"}
-          = message
+    = render :partial => 'shared/flash', :locals => { :flash => flash }
     = yield
     = yield :scripts
