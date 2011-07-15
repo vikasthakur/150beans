@@ -1,3 +1,4 @@
-.flash
-  - flash.each do |type, msg| -
-    = content_tag :div, msg, :class => type if msg.is_a?(String)
+- if !flash.empty?
+  %section.flash
+    - flash.each do |type, msg| -
+      = content_tag :div, msg, :class => type if msg.is_a?(String)

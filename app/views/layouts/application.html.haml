@@ -10,5 +10,7 @@
   %body
     = render :partial => 'shared/usernav'
     = render :partial => 'shared/flash', :locals => { :flash => flash }
-    = yield
-    = yield :scripts
+    %section.main
+      = yield
+      = yield :scripts
+    = render :partial => 'shared/footer'
