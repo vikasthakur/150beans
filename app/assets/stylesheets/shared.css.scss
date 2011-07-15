@@ -1,0 +1,48 @@
+body {
+  margin:0 0;
+  width:100%;
+  
+  .usernav, .flash, .main, .footer {
+    clear:both;
+  }
+}
+section.usernav {
+  top:0px;
+  height:30px;
+  position:relative;
+  
+  background:#333;
+  color:#999;
+  a, a:hover, a:active {
+    color:#eee;
+  }
+  
+  ul {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      line-height: 27px;
+      display:inline-block;
+      vertical-align:top;
+      padding:0 3px;
+    }
+  }
+  
+  .userbar {
+    position:absolute;
+    top:0px;
+    right:10px;
+    img {
+      border:1px solid #666;
+      margin-top:2px;
+    }
+  }
+}
+
+section.footer {
+  position:absolute;
+  bottom:0;
+  text-align:center;
+}
