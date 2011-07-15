@@ -1,8 +1,14 @@
-%article.test_block
-  partial here
-
 %article.entry
-- form_for (Transaction.new) do |f|
-  - f.text_field :date, :type => 'date'
-  - f.number_field :amount
-  - f.text_area :notes
+  = form_for (@transaction) do |f|
+    .field
+      = f.text_field :group, :value => journal.group.name, :readonly => 'readonly', :class => 'hidden'
+    .field
+      = f.text_field :journal_id, :value => journal.id, :readonly => 'readonly', :class => 'hidden'
+    .field
+      = f.text_field :date, :type => 'date', :required => 'required'
+    .field
+      = f.number_field :amount, :placeholder => 'RMB 0.00', :required => 'required'
+    .field
+      = f.text_area :notes, :rows => '3', :placeholder => 'describe transaction - use #tags'
+    .actions
+      = f.submit

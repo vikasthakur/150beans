@@ -8,6 +8,7 @@ class LandingController < ApplicationController
   def home
     if user_signed_in?
       @journals = current_user.groups.collect{ |g| g.journal }
+      @transaction = Transaction.new
     else
       redirect_to root_url, :alert => "You must sign in first!"
     end

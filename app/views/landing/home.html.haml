@@ -4,11 +4,7 @@
   - current_user.groups.each do |g|
     %section.journal
       %h1= g.name
-      %article.entry
-      - form_for (Transaction.new) do |f|
-        - f.text_field :date, :type => 'date'
-        - f.number_field :amount
-        - f.text_area :notes
+      = render :partial => 'transactions/entry', :locals => { :journal => g.journal }
         
       - g.journal.transactions.each do |t|
         %article.transaction
