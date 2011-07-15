@@ -8,6 +8,7 @@
     = csrf_meta_tags
   
   %body
+    = render :partial => 'blocks/user_bar'
     .flash
       - flash.each do |type, message| -
         .message{:class => "#{type}"}
