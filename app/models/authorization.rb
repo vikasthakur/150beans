@@ -1,4 +1,4 @@
-class Identity
+class Authorization
   include Mongoid::Document
   field :provider, :type => String
   field :uid, :type => String
