@@ -4,7 +4,7 @@
   - current_user.groups.each do |g|
     %section.journal
       %h1= g.name
-      = render :partial => 'transactions/entry', :locals => { :journal => g.journal }
+      = render :partial => 'transactions/form', :locals => { :journal => g.journal }
         
       - g.journal.transactions.each do |t|
         %article.transaction
