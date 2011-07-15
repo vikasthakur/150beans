@@ -3,7 +3,9 @@ class User
   field :name, :type => String
   field :email, :type => String
   field :avatar, :type => String
+  
   embeds_many :authorizations
+  has_and_belongs_to_many :groups
   
   def self.create_with_omniauth(auth)
     begin
@@ -23,5 +25,9 @@ class User
     rescue Exception => e
       raise Exception, "cannot create user record"
     end
+  end
+  
+  def member_of?(group)
+    groups.any? { |g| g.name == group }
   end
 end

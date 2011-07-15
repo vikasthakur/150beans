@@ -25,6 +25,7 @@ gem 'capistrano'
 # application gems
 gem 'haml'
 gem 'omniauth'
+gem 'cancan'
 
 group :test do
   # Pretty printed test output
