@@ -5,6 +5,7 @@ Beans::Application.routes.draw do
   match '/signout' => 'sessions#destroy', :as => :signout
   match '/signin' => 'sessions#new', :as => :signin
   
+  match '/home' => 'landing#home', :as => :home
   root :to => 'landing#index'
 
   # See how all your routes lay out with "rake routes"
