@@ -1,0 +1,18 @@
+%section.home
+  %h1 User Home
+
+  - current_user.groups.each do |g|
+    %section.journal
+      %h1= g.name
+      %article.entry
+      - form_for (Transaction.new) do |f|
+        - f.text_field :date, :type => 'date'
+        - f.number_field :amount
+        - f.text_area :notes
+        
+      - g.journal.transactions.each do |t|
+        %article.transaction
+          %ul
+            %li= t.notes
+            %li= t.date
+            %li= t.amount

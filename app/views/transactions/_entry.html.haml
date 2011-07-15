@@ -1,0 +1,8 @@
+%article.test_block
+  partial here
+
+%article.entry
+- form_for (Transaction.new) do |f|
+  - f.text_field :date, :type => 'date'
+  - f.number_field :amount
+  - f.text_area :notes
