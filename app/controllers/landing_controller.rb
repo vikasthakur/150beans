@@ -9,7 +9,7 @@ class LandingController < ApplicationController
     if user_signed_in?
       @journals = current_user.groups.collect{ |g| g.journal }
     else
-      redirect_to root_url, :alert => "You need to sign in first!"
+      redirect_to root_url, :alert => "You must sign in first!"
     end
   end
 end
