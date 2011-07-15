@@ -1,5 +1,6 @@
 .usernav
   - if user_signed_in?
-    = raw "@#{current_user.name} | #{link_to('Sign out', signout_path)}"
+    = image_tag(current_user.avatar, :alt => "@#{current_user.name}", :class => "profile_image_small") if current_user.avatar
+    != link_to('Sign out', signout_path)
   - else
     = link_to('Sign in', signin_path)
