@@ -2,12 +2,15 @@ body {
   background-color: #fff;
   color: #333;
   font-family: "Lucida Grande","Lucida Sans",Georgia,Helvetica,Arial,sans-serif;
-  // font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,arial,sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 18px;
 }
 h1, h2, h3, h4, h5, h6 {
-font-family:"Gill Sans","Gill Sans MT","Helvetica Neue","Helvetica",Arial,sans-serif;
+  font-family:"Gill Sans","Gill Sans MT","Helvetica Neue","Helvetica",Arial,sans-serif;
+}
+input, textarea{
+  font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,arial,sans-serif;
+  font-size: 14px;
 }
 
 .clear{clear:both;}
