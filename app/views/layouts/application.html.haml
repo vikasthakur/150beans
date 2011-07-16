@@ -9,8 +9,8 @@
   
   %body.web
     = render :partial => 'shared/usernav'
-    = render :partial => 'shared/flash', :locals => { :flash => flash }
     %section.main
+      = render :partial => 'shared/flash', :locals => { :flash => flash }
       = yield
       = yield :scripts
     = render :partial => 'shared/footer'
