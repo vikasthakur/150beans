@@ -2,6 +2,7 @@
 %html
   %head
     %title Beans
+    = stylesheet_link_tag "fluid960gs/reset", "fluid960gs/text", "fluid960gs/960"
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = yield :header
@@ -9,8 +10,10 @@
   
   %body
     = render :partial => 'shared/usernav'
-    = render :partial => 'shared/flash', :locals => { :flash => flash }
     %section.main
+      .usernav_push
+      = render :partial => 'shared/flash', :locals => { :flash => flash }
       = yield
       = yield :scripts
+      .footer_push
     = render :partial => 'shared/footer'

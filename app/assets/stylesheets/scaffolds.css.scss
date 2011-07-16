@@ -1,10 +1,27 @@
 body {
   background-color: #fff;
   color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px; }
+  font-family: "Lucida Grande","Lucida Sans",Georgia,Helvetica,Arial,sans-serif;
+  line-height: 18px;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family:"Gill Sans","Gill Sans MT","Helvetica Neue","Helvetica",Arial,sans-serif;
+}
+.web {
+  font-size: 16px;
+  input, textarea{
+    font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,arial,sans-serif;
+  }
+} 
 
-.clear{
-  clear:both;
+.clear{clear:both;}
+.hidden{display:none;}
+
+.list {
+  li.odd {
+    background-color:#eaeaea;
+  }
+  li.even {
+    background-color:#f5f5f5;
+  }
 }
