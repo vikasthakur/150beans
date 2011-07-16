@@ -7,7 +7,7 @@
     = yield :header
     = csrf_meta_tags
   
-  %body.web
+  %body.mobile
     = render :partial => 'shared/usernav'
     = render :partial => 'shared/flash', :locals => { :flash => flash }
     %section.main

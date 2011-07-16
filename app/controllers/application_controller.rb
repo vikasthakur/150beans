@@ -1,10 +1,21 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
+  before_filter :adjust_format_for_mobile_devices
+
+  def adjust_format_for_mobile_devices
+    if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|Android|Froyo|Eclair)/]
+      request.format = :mobile
+    elsif request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPad)/]
+      request.format = :tablet
+    end
+  end
+   
   
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
-  
+
   private
     def current_user
       begin
