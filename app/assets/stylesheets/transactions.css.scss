@@ -2,7 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body.transactions {
-  // Add the transactions class to your body tag
-  // Then, place scoped styles here.
+.transactions {
+  width:400px;
+  ol.list {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      line-height: 27px;
+      display:inline-block;
+      vertical-align:top;
+    }
+    
+    li.date {width:100px;}
+    li.amount {width:50px;}
+    li.notes {width:150px;}
+  }
 }

@@ -1,5 +1,5 @@
 Beans::Application.routes.draw do
-  resources :transactions
+  resources :transactions, :except => [:index, :show, :new]
 
   # OmniAuth routes
   match '/auth/failure' => 'sessions#failure'
@@ -9,6 +9,9 @@ Beans::Application.routes.draw do
   
   match '/home' => 'landing#home', :as => :home
   root :to => 'landing#index'
+
+  # route anything unknown back to root
+  match '*' => redirect('/')
 
   # See how all your routes lay out with "rake routes"
 
