@@ -1,22 +1,18 @@
-html {height:100%;}
-body {
+html, body {
   margin:0 0;
   width:100%;
   height:100%;
-  
-  .usernav, .flash, .main, .footer {
-    clear:both;
-  }
 }
 #container {
+  height: 100%;
   min-height:100%;
   position:relative;
   height: auto !important;
-  height: 100%;
 }
 section.usernav {
+  clear:both;
   width:100%;
-  height:30px;
+  height:48px;
 
   background:#333;
   color:#999;
@@ -30,7 +26,8 @@ section.usernav {
     margin: 0;
     padding: 0;
     li {
-      line-height: 27px;
+      margin-left:0;
+      line-height: 40px;
       display:inline-block;
       vertical-align:top;
       padding:0 3px;
@@ -39,7 +36,7 @@ section.usernav {
   
   .userbar {
     position:absolute;
-    top:0px;
+    top:3px;
     right:10px;
     img {
       border:1px solid #666;
@@ -48,14 +45,17 @@ section.usernav {
   }
 }
 section.main {
+  clear:both;
   min-height:100%;
-  padding-top:30px;   // height of usernav
-  padding-bottom:15px;  // height of footer
+  margin:1em auto;
 }
 
 section.footer {
+	position:absolute;
+	bottom:0;
+  clear:both;
   width:100%;
-  height:15px;
+  height:30px;
   font-size:0.75em;
   
   .block {
