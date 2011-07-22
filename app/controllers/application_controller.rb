@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :adjust_format_for_mobile_devices
+  before_filter :save_return_to
 
   def adjust_format_for_mobile_devices
     if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|Android|Froyo|Eclair)/]
@@ -10,8 +11,11 @@ class ApplicationController < ActionController::Base
       request.format = :tablet
     end
   end
-   
   
+  def save_return_to
+    session[:return_to] = request.referer
+  end
+
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?

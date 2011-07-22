@@ -14,7 +14,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to home_url, notice: 'Transaction was successfully created.' }
         format.json { render json: @transaction, status: :created, location: @transaction }
       else
-        format.html { redirect_to home_url, :flash => {errors: 'Error parsing transaction notes!'} }
+        format.html { redirect_to session[:return_to], :flash => {errors: 'Error parsing transaction notes!'} }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
@@ -30,7 +30,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to home_url, notice: 'Transaction was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { redirect_to home_url, :flash => {errors: 'Error parsing transaction notes!'} }
+        format.html { redirect_to session[:return_to], :flash => {errors: 'Error parsing transaction notes!'} }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
@@ -43,7 +43,7 @@ class TransactionsController < ApplicationController
     @transaction.destroy
 
     respond_to do |format|
-      format.html { redirect_to home_url }
+      format.html { redirect_to session[:return_to] }
       format.json { head :ok }
     end
   end
