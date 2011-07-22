@@ -1,7 +1,7 @@
 /* image replacement icon buttons */
-.edit, .delete{text-indent:-99999px;background-repeat:no-repeat;}
-.edit{background:url('/assets/images/icons/48x48/pencil.png');width:48px;height:48px;}
-.delete{background:url('/assets/images/icons/48x48/trash.png');width:48px;height:48px;}
+.edit, .delete{text-indent:-99999px;background-repeat:no-repeat;display:block;}
+.edit{background-image:url('/assets/icons/48x48/pencil.png');width:48px;height:48px;}
+.delete{background-image:url('/assets/icons/48x48/trash.png');width:48px;height:48px;}
 
 /* BUTTONS */
 .buttons a, .buttons button{
