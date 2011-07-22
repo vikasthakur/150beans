@@ -8,6 +8,25 @@ html, body {
   position:relative;
   height: auto !important;
 }
+
+section.flash {
+  margin-bottom:1em;
+
+  .errors, .alert, .notice {
+    padding:1em;
+    border:1px solid #87C87B;
+    color:#87C87B;
+  }  
+  .errors, .alert {
+    border-color:#CD2D2B;
+    color:#CD2D2B;
+  }
+  .notice { 
+    border-color:#E4CA50;
+    color:#E4CA50;
+  }
+}
+
 section.usernav {
   clear:both;
   width:100%;
