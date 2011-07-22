@@ -2,10 +2,16 @@
 
 class Transaction
   include Mongoid::Document
+  include Mongoid::Timestamps
+
   field :date, type: Date
   field :amount, type: BigDecimal
   field :currency, type: String
   field :notes, type: String
+  
+  scope :for_journal, ->(journal) { where(journal_id: journal.id) }
+  scope :rev_chrono, order_by([[:date, :desc], [:created_at, :desc]])
+  scope :chrono, order_by([[:date, :asc], [:created_at, :asc]])
   
   belongs_to :journal
   
