@@ -16,12 +16,15 @@ class Transaction
   private
     def parse_notes
       tags = self.notes.scan(/#[^ ]+/)
-      match = self.notes.match(/\^(today|yesterday|[^ ]+)/)
+      match = self.notes.downcase.match(/\^(now|today|yesterday|-\d+|[^ ]+)/)
       if match.nil? || match[1]=="now" || match[1]=="today"
         self.date = Date.today
       elsif match[1]=="yesterday"
         self.date = Date.yesterday
+      elsif match[1].start_with?('-')
+        self.date = Date.today - match[1].delete('-').to_i
       else
+        # TODO deal with the various date formats
         self.date = Date.parse(match[1]) 
       end
       

@@ -5,10 +5,6 @@
     .field
       = f.text_field :journal_id, :value => journal.id, :readonly => 'readonly', :class => 'hidden'
     .field
-      = f.text_field :date, :type => 'date', :required => 'required'
-    .field
-      = f.number_field :amount, :placeholder => 'RMB 0.00', :required => 'required'
-    .field
       = f.text_area :notes, :rows => '3', :placeholder => 'transaction description (can use #tags)'
     .actions
       = f.submit
