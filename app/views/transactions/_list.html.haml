@@ -1,5 +1,5 @@
-%section.transactions
+%section.journal
   %ol.list
     - transactions.each do |t|
       %li{:class => cycle("odd", "even")}
-        = render :partial => 'transactions/entry', :locals => { :transaction => t }
+        = render :partial => 'transactions/item', :locals => { :transaction => t }

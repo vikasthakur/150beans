@@ -1,0 +1,7 @@
+%article.transaction
+  %ul
+    %li= link_to 'ed', edit_transaction_path(transaction), :class => "edit"
+    %li= link_to 'rm', transaction, :class => "delete", :confirm => 'Are you sure?', :method => :delete
+    %li.notes= transaction.notes
+    %li.amount= transaction.amount
+    %li.date= transaction.date
