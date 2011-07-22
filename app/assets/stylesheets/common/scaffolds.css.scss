@@ -1,14 +1,14 @@
 body {
-  background-color: #fff;
+  background-color: #BCBCBC;
   color: #333;
   font-family: "Lucida Grande","Lucida Sans",Georgia,Helvetica,Arial,sans-serif;
   line-height: 18px;
+  font-size: 16px;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family:"Gill Sans","Gill Sans MT","Helvetica Neue","Helvetica",Arial,sans-serif;
 }
 .web {
-  font-size: 16px;
   input, textarea{
     font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,arial,sans-serif;
   }
@@ -18,6 +18,16 @@ h1, h2, h3, h4, h5, h6 {
 .hidden{display:none;}
 
 .list {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    line-height: 27px;
+    vertical-align:top;
+    margin:0;
+  }
+
   li.odd {
     background-color:#eaeaea;
   }

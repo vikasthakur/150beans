@@ -34,6 +34,8 @@ section.usernav {
 
   background:#333;
   color:#999;
+  border-bottom:1px solid #FF8723;
+  
   a, a:hover, a:active {
     color:#eee;
   }
@@ -73,7 +75,7 @@ section.footer {
 	position:absolute;
 	bottom:0;
   width:100%;
-  font-size:0.75em;
+  font-size:10px;
   
   .block {
     text-align:center;

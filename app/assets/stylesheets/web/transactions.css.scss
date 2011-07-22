@@ -2,20 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.transactions {
-  ol.list {
-    display: block;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.transactions .journal {
+  font-size:75%;
+  
+  .transaction {
+    width:100%;
     li {
-      line-height: 27px;
       display:inline-block;
-      vertical-align:top;
     }
-    
-    li.date {width:100px;}
-    li.amount {width:50px;}
-    li.notes {width:150px;}
   }
+}
+
+.transactions .entry {
+  form {margin:0.5em 0 1em;}
+  textarea {width:100%;}
 }
