@@ -22,19 +22,17 @@ class Transaction
   # description with dates and amount stripped
   def desc
     s = self.notes
-    match = s.downcase.match(/\^(now|today|yesterday|yes|-\d+|[^ ]+)/)
-    s.sub!(match.to_s, '') if match
-    match = s.match(/(\$|£|€|¥)[ ]*[^ ]+/)
-    match = s.upcase.match(/\d+\.?\d*[ ]+(RMB|CNY|USD|CAD|HKD|EUR|GBP)/) unless match
-    match = s.upcase.match(/(RMB|CNY|USD|HKD|CAD|EUR|GBP)[ ]*\d+\.?\d*/) unless match
-    match = s.match(/^\d+\.?\d*/) unless match
-    s.sub!(match.to_s, '') if match
+    match = s.downcase.match(/\^\d{4}-\d{2}-\d{2}/)
+    s.sub!(match.to_s, '').strip! if match
+    match = s.upcase.match(/(RMB|CNY|USD|HKD|CAD|EUR|GBP)[ ]*\d+\.?\d*/)
+    s.sub!(match.to_s, '').strip! if match
     s
   end
 
   private
     def parse_notes
       tags = self.notes.scan(/#[^ ]+/)
+      
       match = self.notes.downcase.match(/\^(now|today|yesterday|yes|-\d+|[^ ]+)/)
       if match.nil? || %w[now today].include?(match[1])
         self.date = Date.today
@@ -47,7 +45,9 @@ class Transaction
         self.date = Date.parse(match[1]) 
       end
       
-      # TODO substitute date with known format
+      # substitute date with known format
+      strip_from_notes_anycase(match.to_s) unless match.nil?
+      self.notes = self.notes.strip + " ^#{self.date.to_s}"
       
       match = self.notes.match(/(\$|£|€|¥)[ ]*[^ ]+/)
       match = self.notes.upcase.match(/\d+\.?\d*[ ]+(RMB|CNY|USD|CAD|HKD|EUR|GBP)/) unless match
@@ -72,7 +72,14 @@ class Transaction
         end
         self.currency = c
         
-        # TODO substitute amount with known format
+        # substitute amount with known format
+        strip_from_notes_anycase(match.to_s) unless match.nil?
+        self.notes = "#{self.currency} #{self.amount} " + self.notes.strip unless match.nil?
       end
+    end
+    
+    def strip_from_notes_anycase(target)
+      index = self.notes.upcase.index(target.upcase)
+      self.notes.slice!(index, target.length)
     end
 end
