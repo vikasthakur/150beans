@@ -1,10 +1,25 @@
 %article.entry
   = form_for (@transaction) do |f|
     .field
-      = f.text_field :group, :value => journal.group.name, :readonly => 'readonly', :class => 'hidden'
+      = f.text_field :group, value:journal.group.name, readonly:'readonly', class:'hidden'
     .field
-      = f.text_field :journal_id, :value => journal.id, :readonly => 'readonly', :class => 'hidden'
+      = f.text_field :journal_id, value:journal.id, readonly:'readonly', class:'hidden'
     .field
-      = f.text_area :notes, :rows => '3', :placeholder => 'transaction description (can use #tags)'
+      = f.text_area :notes, rows:'3', required:'required', placeholder:'transaction description (can use #tags)'
     .actions
-      = f.submit
+      .buttons
+        = f.submit
+        / %a#submit{:href => '#'} Submit
+      
+:javascript
+  $(function() {
+    $('#submit').click(function() {
+      var ready = true;
+      
+      if (ready) {
+        $('#new_transaction').submit();
+      } else {
+        $('#new_transaction').append('<p id="required" class="required">* required fields missing</p>');
+      }
+    });
+  });

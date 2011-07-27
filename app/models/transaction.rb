@@ -18,14 +18,27 @@ class Transaction
   validates_presence_of :date, :amount, :currency, :notes
   
   before_validation :parse_notes
+  
+  # description with dates and amount stripped
+  def desc
+    s = self.notes
+    match = s.downcase.match(/\^(now|today|yesterday|yes|-\d+|[^ ]+)/)
+    s.sub!(match.to_s, '') if match
+    match = s.match(/(\$|£|€|¥)[ ]*[^ ]+/)
+    match = s.upcase.match(/\d+\.?\d*[ ]+(RMB|CNY|USD|CAD|HKD|EUR|GBP)/) unless match
+    match = s.upcase.match(/(RMB|CNY|USD|HKD|CAD|EUR|GBP)[ ]*\d+\.?\d*/) unless match
+    match = s.match(/^\d+\.?\d*/) unless match
+    s.sub!(match.to_s, '') if match
+    s
+  end
 
   private
     def parse_notes
       tags = self.notes.scan(/#[^ ]+/)
-      match = self.notes.downcase.match(/\^(now|today|yesterday|-\d+|[^ ]+)/)
-      if match.nil? || match[1]=="now" || match[1]=="today"
+      match = self.notes.downcase.match(/\^(now|today|yesterday|yes|-\d+|[^ ]+)/)
+      if match.nil? || %w[now today].include?(match[1])
         self.date = Date.today
-      elsif match[1]=="yesterday"
+      elsif %w[yesterday yes].include?(match[1])
         self.date = Date.yesterday
       elsif match[1].start_with?('-')
         self.date = Date.today - match[1].delete('-').to_i
@@ -33,6 +46,8 @@ class Transaction
         # TODO deal with the various date formats
         self.date = Date.parse(match[1]) 
       end
+      
+      # TODO substitute date with known format
       
       match = self.notes.match(/(\$|£|€|¥)[ ]*[^ ]+/)
       match = self.notes.upcase.match(/\d+\.?\d*[ ]+(RMB|CNY|USD|CAD|HKD|EUR|GBP)/) unless match
@@ -56,6 +71,8 @@ class Transaction
           end
         end
         self.currency = c
+        
+        # TODO substitute amount with known format
       end
     end
 end

@@ -1,5 +1,5 @@
 body {
-  background-color: #BCBCBC;
+  background-color: #f8f8f8;
   color: #333;
   font-family: "Lucida Grande","Lucida Sans",Georgia,Helvetica,Arial,sans-serif;
   line-height: 18px;
@@ -12,10 +12,12 @@ h1, h2, h3, h4, h5, h6 {
   input, textarea{
     font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,arial,sans-serif;
   }
-} 
+}
 
 .clear{clear:both;}
 .hidden{display:none;}
+.left{text-align:left;}
+.right{text-align:right;}
 
 .list {
   display: block;
