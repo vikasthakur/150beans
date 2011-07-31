@@ -1,5 +1,5 @@
 Beans::Application.routes.draw do
-  resources :transactions, :except => [:index, :show, :new]
+  resources :transactions, :except => [:show, :new]
 
   # OmniAuth routes
   match '/auth/failure' => 'sessions#failure'

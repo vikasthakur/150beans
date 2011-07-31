@@ -1,0 +1,4 @@
+%section.home.grid_7.alpha
+  %h1 Transactions
+  
+  = render :partial => 'transactions/list', :locals => { :style => "grouped", :transactions => Transaction.rev_chrono }

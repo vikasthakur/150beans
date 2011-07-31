@@ -2,12 +2,11 @@
   %h1 User Home
   
   - current_user.groups.each do |g|
-    %section.group
-      %section.transactions.grid_7.alpha
-        %h1= "#{g.name} transactions"
-        = render :partial => 'transactions/form', :locals => { :journal => g.journal }
-        = render :partial => 'transactions/list', :locals => { :transactions => Transaction.for_journal(g.journal).rev_chrono.limit(8) }
-    
-      %section.sidebar.grid_10
-        %h1 spending
-      .clear
+    %section.journal.grid_7.alpha
+      %h1= "#{g.name} journal"
+      = render :partial => 'transactions/form', :locals => { :journal => g.journal }
+      = render :partial => 'transactions/list', :locals => { :style => "grouped", :transactions => Transaction.for_journal(g.journal).rev_chrono.limit(8) }
+  
+    %section.sidebar.grid_9
+      %h1 spending
+    .clear

@@ -2,30 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.transactions .journal {
+.transactions {
   clear:both;
   margin-top:1em;
+  
+  .grouping-date {margin-top:7px;width:35px;text-align:center;background:#fff;}
   
   .transaction {
     position:relative;
     margin-top:1em;
-    li {
-      display:inline-block;
-    }
+    vertical-align:top;
+    li {display:inline-block;}
     
-    .currency {margin-top:7px;width:35px;text-align:center;line-height:15px;font-size:0.6em;}
-    .cny{background:#DF7474;}
-    .hkd{background:#9EC9E5;}
-    .usd{background:#A6CF95;}
-    .cad{background:#99583B;}
+    .currency {top:0px;width:35px;text-align:center;line-height:15px;font-size:0.6em;}
+    .cny {background:#DF7474;}
+    .hkd {background:#9EC9E5;}
+    .usd {background:#A6CF95;}
+    .cad {background:#99583B;}
     .amount {width:80px;text-align:right;}
     .tags {margin-left:23px;width:250px;text-align:right;}
     .notes {padding:4px 5%;width:90%;background:#fff;border:1px solid #E1E1E1;color:#aabaca;font-size:0.8em;}
     .actions {position:absolute;left:-46px;top:0px;width:38px;margin-top:7px;}
+    
+    .grouped {
+      .date {display:none;}
+      .time {display:none;}
+    }
   }
 }
 
-.transactions .entry {
+.journal .entry {
   form {margin:0.5em 0 1em;}
   textarea {width:100%;}
 }

@@ -42,6 +42,14 @@ class Transaction
         self.date = Date.today - match[1].delete('-').to_i
       else
         # TODO deal with the various date formats
+        # acceptable formats: y-m-d
+        #   2011/7/8
+        #   2011/07/08
+        #   2011-7-8
+        #   2011-07-08
+        #   7/8 - defaults to current year
+        #   7-8 - defaults to current year
+        # 
         self.date = Date.parse(match[1]) 
       end
       

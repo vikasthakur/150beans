@@ -1,6 +1,10 @@
-%section.journal
-  %ol.list
+%section.transactions
+  %ol.list{:class => "#{style}"}
     - transactions.each do |t|
-      %li= render :partial => 'transactions/item', :locals => { :transaction => t }
+      - if style == "grouped" && t.date != @grouping_date
+        - @grouping_date = t.date
+        %li.grouping-date= @grouping_date.to_s
+      %li= render :partial => 'transactions/item', :locals => { :style => style, :transaction => t }
+  
   .actions
-    more ...        
+    =link_to "all", transactions_path
