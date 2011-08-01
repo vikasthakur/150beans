@@ -27,7 +27,7 @@ role :db, domain, :primary => true
 #	Git
 #############################################################
 
-set :branch, "master"
+set :branch, "minified"
 
 #############################################################
 #	Passenger
