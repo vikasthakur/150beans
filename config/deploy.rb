@@ -9,8 +9,8 @@ set :deploy_via, :remote_cache
 
 role :web, "apps.beyond150.com"                          # Your HTTP server, Apache/etc
 role :app, "apps.beyond150.com"                          # This may be the same as your `Web` server
-role :db,  "db1.beyond150.com", :primary => true # This is where Rails migrations will run
-role :db,  "db1.beyond150.com"
+role :db,  "apps.beyond150.com", :primary => true # This is where Rails migrations will run
+role :db,  "apps.beyond150.com"
 
 # If you are using Passenger mod_rails uncomment this:
 # if you're still using the script/reapear helper you will need
