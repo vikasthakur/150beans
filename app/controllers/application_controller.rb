@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|Android|Froyo|Eclair)/]
       request.format = :mobile
     elsif request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPad|PlayBook)/]
-      request.format = :tablet
+      # request.format = :tablet
     end
   end
   
