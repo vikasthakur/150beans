@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc4'
+gem 'rails', '3.1.0.rc5'
 
 # using mongoid instead of mysql or sqlite3
 gem "mongoid", "~> 2.0"
@@ -10,8 +10,8 @@ gem "bson_ext", "~> 1.3"
 gem 'sass-rails', "~> 3.1.0.rc"
 gem 'coffee-script'
 gem 'uglifier'
-gem 'execjs'
-gem 'therubyracer'
+# gem 'execjs'
+# gem 'therubyracer'
 
 gem 'jquery-rails'
 
