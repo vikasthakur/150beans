@@ -1,4 +1,4 @@
 - if !flash.empty?
   %section.flash
-    - flash.each do |type, msg| -
+    - flash.each do |type, msg|
       = content_tag :div, msg, :class => "#{type} rounded-s" if msg.is_a?(String)
