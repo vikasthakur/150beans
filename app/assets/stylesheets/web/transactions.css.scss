@@ -2,40 +2,50 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.transactions {
+$light-grey:#E1E1E1;
+$medium-grey:#999;
+$dark-grey:#333;
+
+.transactions-list {
   clear:both;
-  margin-top:1em;
+  margin-top:1em;  
+  background:#fff;
+  border:1px solid $light-grey;
+  color:$dark-grey;
+  font-size:0.8em;
   
   .grouping-date {
     padding: 0.25em 0;
     text-align: center;
-    background: #EEE;
+    background: $light-grey;
     margin-top: 1.6em;
-    border: 1px solid #CCC;
-    color: #555;
+    border: 1px solid $light-grey;
   }
-  
+
   .transaction {
     position:relative;
-    margin-top:1em;
-    vertical-align:top;
+    padding:1em 0;
+    margin:0 1em;
+    border-bottom:1px dashed #ccc;
     li {display:inline-block;}
-    
-    .currency {top:0px;width:35px;text-align:center;line-height:15px;font-size:0.6em;}
+    .date {color:$medium-grey;width:28%;}
+    .amount {width:70%;text-align:right;}
+    .currency {padding:0 0.5em;text-align:center;font-size:0.8em;font-weight:bold;vertical-align:bottom;}
     .cny {background:#DF7474;}
     .hkd {background:#9EC9E5;}
     .usd {background:#A6CF95;}
     .cad {background:#99583B;}
-    .amount {width:80px;text-align:right;}
-    .tags {margin-left:23px;width:250px;text-align:right;}
-    .notes {padding:4px 5%;width:90%;background:#fff;border:1px solid #E1E1E1;color:#9BA9B7;font-size:0.8em;}
-    .actions {position:absolute;left:-46px;top:0px;width:38px;margin-top:7px;}
-    
+    .notes {width:100%;}
+    .tags {display:none;}
+    .created-at {display:none;}
+
     .grouped {
       .date {display:none;}
-      .time {display:none;}
+      .created-at  {display:none;}
     }
   }
+  
+  .actions {margin:1em;text-align:right;}
 }
 
 .journal .entry {

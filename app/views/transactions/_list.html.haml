@@ -1,10 +1,28 @@
-%section.transactions
-  %ol.list{:class => "#{style}"}
-    - transactions.each do |t|
-      - if style == "grouped" && t.date != @grouping_date
-        - @grouping_date = t.date
-        %li.grouping-date= @grouping_date.to_s
-      %li= render :partial => 'transactions/item', :locals => { :style => style, :transaction => t }
-  
+%section.transactions-list.rounded-m
+  %script(type="text/x-jquery-tmpl" id="transaction_item_template")
+    %article.transaction
+      %ul
+        %li.date ${transaction.date}
+        %li.amount 
+          %span.currency.rounded-s(class="${transaction.currency}") ${transaction.currency}
+          %span ${transaction.amount}
+        %li.notes.rounded-m ${transaction.desc}
+        %li.tags ${transaction.tags}
+        %li.created-at ${transaction.created_at}
+    
+  %ol.list(id="transactions" class="latest")
+    
   .actions
     =link_to "all", transactions_path
+    
+  :javascript
+    var transactions = [
+      { transaction: {date: "2011-08-16", currency: "cny", amount: "12.22", tags: "some tags", desc: "some description", created_at: "2011-08-16"} },
+      { transaction: {date: "2011-08-16", currency: "cny", amount: "10.00", tags: "#parking", desc: "#parking", created_at: "2011-08-17"} },
+      { transaction: {date: "2011-08-15", currency: "hkd", amount: "9.00", tags: "#groceries", desc: "#groceries", created_at: "2011-08-15"} },
+      { transaction: {date: "2011-08-15", currency: "cny", amount: "10.00", tags: "#parking", desc: "#parking", created_at: "2011-08-16"} }
+    ];
+    $(function () {
+      $("#transaction_item_template").tmpl(transactions).appendTo("#transactions");
+    });
+    
