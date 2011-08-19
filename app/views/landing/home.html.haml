@@ -6,7 +6,7 @@
       %h1= "#{g.name} journal"
       = render :partial => 'transactions/form', :locals => { :journal => g.journal }
       = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => g.journal, :limit => 8 }
-      .actions
+      .links.right
         =link_to "all", transactions_path(:journal_id => g.journal.id)
 
   

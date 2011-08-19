@@ -6,7 +6,7 @@
       = f.text_field :journal_id, value:journal.id, readonly:'readonly', class:'hidden'
     .field.offix
       = f.text_area :notes, rows:'3', required:'required', placeholder:'transaction description (can use #tags)', class:'rounded-s'
-    .actions
+    .actions.right
       .buttons
         = f.submit
         / %a#submit{:href => '#'} Submit

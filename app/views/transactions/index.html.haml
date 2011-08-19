@@ -3,5 +3,5 @@
   
   %section.journal.rounded-m.grid_7.alpha
     = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => @journal, :limit => 20 }
-    .actions
+    .links.right
       =link_to "back", saved_return_to
