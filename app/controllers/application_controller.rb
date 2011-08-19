@@ -15,10 +15,11 @@ class ApplicationController < ActionController::Base
   def save_return_to
     session[:return_to] = request.referer
   end
-
+  
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
+  helper_method :saved_return_to
 
   private
     def current_user
@@ -45,4 +46,9 @@ class ApplicationController < ActionController::Base
         redirect_to root_url, :alert => "You need to sign in for access to this page."
       end
     end
+
+    def saved_return_to
+      session[:return_to]
+    end
+
 end

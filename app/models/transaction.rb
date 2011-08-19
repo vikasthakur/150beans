@@ -9,7 +9,7 @@ class Transaction
   field :currency, type: String
   field :notes, type: String
   
-  scope :for_journal, ->(journal) { where(journal_id: journal.id) }
+  scope :for_journal, ->(journal) { where(journal_id: journal) }
   scope :rev_chrono, order_by([[:date, :desc], [:created_at, :desc]])
   scope :chrono, order_by([[:date, :asc], [:created_at, :asc]])
   
@@ -27,6 +27,10 @@ class Transaction
     match = s.upcase.match(/(RMB|CNY|USD|HKD|CAD|EUR|GBP)[ ]*\d+\.?\d*/)
     s.sub!(match.to_s, '').strip! if match
     s
+  end
+  
+  def as_json(options={})
+    {:transaction => super(:except => [:notes, :updated_at, :group], :methods => [:desc]) }
   end
 
   private

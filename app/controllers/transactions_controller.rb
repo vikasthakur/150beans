@@ -1,4 +1,16 @@
 class TransactionsController < ApplicationController
+  respond_to :html, :json  
+
+  def index
+    limit = 20
+    limit = params[:limit].to_i if params[:limit].to_i
+    
+    @journal = Journal.find(params[:journal_id]) if params[:journal_id]
+    @transactions = Transaction.for_journal(params[:journal_id]) if params[:journal_id]
+    @transactions = @transactions.rev_chrono.limit(limit)
+    respond_with(@transactions)  
+  end
+  
   # GET /transactions/1/edit
   def edit
     @transaction = Transaction.find(params[:id])

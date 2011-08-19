@@ -6,7 +6,7 @@ $light-grey:#E1E1E1;
 $medium-grey:#999;
 $dark-grey:#333;
 
-.transactions-list {
+.transactions {
   clear:both;
   margin-top:1em;  
   background:#fff;
@@ -31,10 +31,10 @@ $dark-grey:#333;
     .date {color:$medium-grey;width:28%;}
     .amount {width:70%;text-align:right;}
     .currency {padding:0 0.5em;text-align:center;font-size:0.8em;font-weight:bold;vertical-align:bottom;}
-    .cny {background:#DF7474;}
-    .hkd {background:#9EC9E5;}
-    .usd {background:#A6CF95;}
-    .cad {background:#99583B;}
+    .CNY {background:#DF7474;}
+    .HKD {background:#9EC9E5;}
+    .USD {background:#A6CF95;}
+    .CAD {background:#99583B;}
     .notes {width:100%;}
     .tags {display:none;}
     .created-at {display:none;}
