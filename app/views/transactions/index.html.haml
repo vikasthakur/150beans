@@ -1,7 +1,7 @@
 %section.home.rounded-m.grid_7.alpha
   %h1 Transactions
   
-  %section.transactions.rounded-m.grid_7.alpha
+  %section.journal.rounded-m.grid_7.alpha
     = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => @journal, :limit => 20 }
     .actions
       =link_to "back", saved_return_to

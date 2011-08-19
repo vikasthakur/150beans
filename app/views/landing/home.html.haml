@@ -2,7 +2,7 @@
   %h1 User Home
   
   - current_user.groups.each do |g|
-    %section.transactions.rounded-m.grid_7.alpha
+    %section.journal.rounded-m.grid_7.alpha
       %h1= "#{g.name} journal"
       = render :partial => 'transactions/form', :locals => { :journal => g.journal }
       = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => g.journal, :limit => 8 }

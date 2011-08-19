@@ -1,11 +1,11 @@
-%article.entry
+%article.form
   = form_for (@transaction) do |f|
     .field
       = f.text_field :group, value:journal.group.name, readonly:'readonly', class:'hidden'
     .field
       = f.text_field :journal_id, value:journal.id, readonly:'readonly', class:'hidden'
-    .field
-      = f.text_area :notes, rows:'3', required:'required', placeholder:'transaction description (can use #tags)'
+    .field.offix
+      = f.text_area :notes, rows:'3', required:'required', placeholder:'transaction description (can use #tags)', class:'rounded-s'
     .actions
       .buttons
         = f.submit
@@ -13,6 +13,13 @@
       
 :javascript
   $(function() {
+    $('#transaction_notes').focusin(function() {
+      $(this).css('background-color','#e5fff3');
+    });
+    $('#transaction_notes').focusout(function() {
+      $(this).css('background-color','#fff');
+    });
+    
     $('#submit').click(function() {
       var ready = true;
       

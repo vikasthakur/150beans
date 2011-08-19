@@ -2,30 +2,35 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$light-grey:#E1E1E1;
+$light-grey:#E9E9E9;
 $medium-grey:#999;
 $dark-grey:#333;
 
-.transactions {
+.journal {
   clear:both;
   margin-top:1em;  
   background:#fff;
   border:1px solid $light-grey;
   color:$dark-grey;
   font-size:0.8em;
+  padding:1em 0;
   
-  .grouping-date {
-    padding: 0.25em 0;
-    text-align: center;
-    background: $light-grey;
-    margin-top: 1.6em;
-    border: 1px solid $light-grey;
+  h1, .form, .transaction, .actions {
+    position:relative;
+    margin:0 1em;
+  }
+  
+  // overflow fix
+  .offix {
+    padding-right:14px;
+  }
+  .form {
+    textarea {width:100%;height:80px;padding:4px 4px;resize:none;border:3px solid $light-grey;font-size:1.2em;}
+    .actions {margin:0;}
   }
 
   .transaction {
-    position:relative;
     padding:1em 0;
-    margin:0 1em;
     border-bottom:1px dashed #ccc;
     li {display:inline-block;}
     .date {color:$medium-grey;width:28%;}
@@ -45,7 +50,15 @@ $dark-grey:#333;
     }
   }
   
-  .actions {margin:1em;text-align:right;}
+  .grouping-date {
+    padding: 0.25em 0;
+    text-align: center;
+    background: $light-grey;
+    margin-top: 1.6em;
+    border: 1px solid $light-grey;
+  }
+  
+  .actions {text-align:right;}
 }
 
 .journal .entry {
