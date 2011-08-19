@@ -1,5 +1,5 @@
 %section.list
-  %script(type="text/x-jquery-tmpl" id="transaction_item_template")
+  %script(type="text/x-jquery-tmpl" id="transaction_item_template_#{journal.id}")
     %article.transaction
       %ul
         %li.date ${transaction.date}
@@ -10,7 +10,7 @@
         %li.tags ${transaction.tags}
         %li.created-at ${transaction.created_at}
     
-  %ol.list(id="transactions" class="latest")
+  %ol.list(id="transactions_#{journal.id}" class="latest")
     
   :javascript
     $(function () {
@@ -20,7 +20,7 @@
           limit:"#{limit}"
         },
         function(data) {  
-          $("#transactions").html($("#transaction_item_template").tmpl(data));
+          $("#transactions_#{journal.id}").html($("#transaction_item_template_#{journal.id}").tmpl(data));
         }
       );
     });
