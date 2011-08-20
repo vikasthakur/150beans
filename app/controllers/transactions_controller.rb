@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   respond_to :html, :json  
 
   def index
-    max = 100
+    max = 20
     max = params[:limit].to_i if params[:limit].to_i
     
     @journal = Journal.find(params[:journal_id]) if params[:journal_id]
@@ -56,7 +56,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to session[:return_to], alert: 'Transaction was deleted.' }
-      format.json { head :ok }
+      format.json { render json: true }
     end
   end
 end
