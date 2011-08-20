@@ -31,7 +31,7 @@
       
       $('.transaction .delete')
         .live('ajax:success', function(evt, data, status, xhr){
-          $(this).closest('article').fadeOut();
+          $(this).closest('article').fadeOut('slow', function() {$(this).remove()});
 
           $flash.empty();
           $flash.append('<div class="alert rounded-s">transaction deleted</div>');

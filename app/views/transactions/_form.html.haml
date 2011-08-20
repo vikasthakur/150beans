@@ -26,7 +26,7 @@
         var $this = $(this);
         var jid = data.transaction.journal_id;
 
-        $('#transactions_'+jid).prepend($('#transaction_template_'+jid).tmpl(data));
+        $('#transaction_template_'+jid).tmpl(data).hide().prependTo($('#transactions_'+jid)).fadeIn("slow");
         $('#new_transaction').each(function() {this.reset();});
         $flash.empty();
         $flash.append('<div class="notice rounded-s">transaction added</div>');
