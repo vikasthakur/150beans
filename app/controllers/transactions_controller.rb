@@ -2,13 +2,13 @@ class TransactionsController < ApplicationController
   respond_to :html, :json  
 
   def index
-    limit = 20
-    limit = params[:limit].to_i if params[:limit].to_i
+    max = 20
+    max = params[:limit].to_i if params[:limit].to_i
     
     @journal = Journal.find(params[:journal_id]) if params[:journal_id]
-    @transactions = Transaction.for_journal(params[:journal_id]) if params[:journal_id]
-    @transactions = @transactions.rev_chrono.limit(limit)
-    respond_with(@transactions)  
+    @transactions = Transaction.rev_chrono
+    @transactions = @transactions.for_journal(params[:journal_id]) if params[:journal_id]
+    respond_with(@transactions.limit(max))
   end
   
   # GET /transactions/1/edit
@@ -40,7 +40,7 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
         format.html { redirect_to home_url, notice: 'Transaction was updated.' }
-        format.json { head :ok }
+        format.json { render json: @transaction, status: :updated, location: @transaction }
       else
         format.html { redirect_to session[:return_to], :flash => {errors: 'Error parsing transaction!'} }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }

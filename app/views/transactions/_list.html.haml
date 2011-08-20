@@ -1,5 +1,5 @@
 %section.list
-  %script(type="text/x-jquery-tmpl" id="transaction_item_template_#{journal.id}")
+  %script(type="text/x-jquery-tmpl" id="transaction_template_#{journal.id}")
     %article.transaction
       %ul
         %li.date ${transaction.date}
@@ -14,13 +14,13 @@
     
   :javascript
     $(function () {
-      $.getJSON("/transactions.json",
+      $.getJSON("#{transactions_path(format:"json")}",
         {
           journal_id:"#{journal.id}", 
           limit:"#{limit}"
         },
-        function(data) {  
-          $("#transactions_#{journal.id}").html($("#transaction_item_template_#{journal.id}").tmpl(data));
+        function(data) {
+          $("#transactions_#{journal.id}").html($("#transaction_template_#{journal.id}").tmpl(data));
         }
       );
     });

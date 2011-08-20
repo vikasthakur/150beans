@@ -9,10 +9,13 @@
     .actions.right
       .buttons
         = f.submit
-        / %a#submit{:href => '#'} Submit
       
 :javascript
-  $(function() {
+  $(function() {    
+    $('.flash').ajaxError(function(e, jqxhr, settings, exception) {
+      $(this).append('<div class="errors rounded-s">Errors: '+jqxhr.responseText+'</div>' );
+    });
+
     $('#transaction_notes').focusin(function() {
       $(this).css('background-color','#e5fff3');
     });
@@ -20,13 +23,23 @@
       $(this).css('background-color','#fff');
     });
     
-    $('#submit').click(function() {
+    $('#new_transaction').submit(function(e) {
+      /* stop form from submitting normally */
+      e.preventDefault();
+      $('.flash').empty();
+
       var ready = true;
-      
+                
       if (ready) {
-        $('#new_transaction').submit();
+        $.post('#{transactions_path(format:"json")}', $(this).serialize(), function(data) {
+          journal = data.transaction.journal_id;
+          $('#transactions_'+journal).prepend($('#transaction_template_'+journal).tmpl(data));
+          $('#new_transaction').each(function() {this.reset();});
+        })
+        .error(function() {
+        });
       } else {
-        $('#new_transaction').append('<p id="required" class="required">* required fields missing</p>');
+        $('#flash').append('<div class="error rounded-s">what do you want me to do with a blank entry?</div>');
       }
     });
   });
