@@ -1,9 +1,11 @@
-%section.home.rounded-m.grid_7.alpha
+%section.home
   %h1 Transactions
-  
-  %section.journal.rounded-m.grid_7.alpha
-    = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => @journal }
-    = paginate @transactions
+  %section.group.rounded-m
+    %section.journal.grid_7
+      %h1= "#{@journal.group.name} journal"
+      = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => @journal }
+      = paginate @transactions
     
-    .links.right
-      =link_to "home", home_path
+      .links.right
+        =link_to "home", home_path
+    .clear

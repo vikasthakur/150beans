@@ -1,1 +1,11 @@
-section.group {margin:1em 0;}
+$light-grey:#E9E9E9;
+$medium-grey:#999;
+$dark-grey:#333;
+
+section.group {
+  margin:1em 0;
+  background:#fff;
+  border:1px solid $light-grey;
+  color:$dark-grey;
+  padding:1em 0;
+}
