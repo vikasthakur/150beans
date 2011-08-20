@@ -29,6 +29,7 @@
         $('#transactions_'+jid).prepend($('#transaction_template_'+jid).tmpl(data));
         $('#new_transaction').each(function() {this.reset();});
         $flash.empty();
+        $flash.append('<div class="notice rounded-s">transaction added</div>');
       })
       .bind('ajax:error', function(evt, xhr, status, error){
         var responseObject = $.parseJSON(xhr.responseText);
@@ -37,6 +38,5 @@
         $.each(responseObject, function(k, v){
           $flash.append('<div class="errors rounded-s"><strong>' + k + '</strong> ' + v + '</div>');
         })
-    });
-        
+      });
   });

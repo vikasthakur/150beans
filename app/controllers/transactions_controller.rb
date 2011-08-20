@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   respond_to :html, :json  
 
   def index
-    max = 20
+    max = 100
     max = params[:limit].to_i if params[:limit].to_i
     
     @journal = Journal.find(params[:journal_id]) if params[:journal_id]

@@ -11,12 +11,14 @@
         %li.created-at ${transaction.created_at}
       .actions
         %a(class="edit" href="/transactions/${transaction._id}/edit")edit
-        %a(class="delete" href="/transactions/${transaction._id}.json" data-confirm="Are you sure" data-method="delete" data-remote="true" data-type="json" rel="nofollow")delete
+        %a(class="delete" href="/transactions/${transaction._id}" data-confirm="Are you sure" data-method="delete" data-remote="true" data-type="json" rel="nofollow")delete
     
   %ol.list(id="transactions_#{journal.id}" class="latest")
   
   :javascript
     $(function () {
+      var $flash = $('.flash');
+
       $.getJSON("#{transactions_path(format:"json")}",
         {
           journal_id:"#{journal.id}", 
@@ -27,8 +29,27 @@
         }
       );
       
-      $('.transaction a[data-method="delete"]').bind('ajax:success', function() {
-        $(this).closest('article').fadeOut();
-      });
+      $('a[data-method="delete"]').click(function() {alert('clicked')})
+      $('.delete')
+        .bind('ajax:success', function(evt, data, status, xhr){
+          alert('deleted');
+          $(this).closest('article').fadeOut();
+
+          $('#transactions_'+jid).prepend($('#transaction_template_'+jid).tmpl(data));
+          $('#new_transaction').each(function() {this.reset();});
+          $flash.empty();
+          $flash.append('<div class="alert rounded-s">transaction deleted</div>');
+        })
+        .bind('ajax:error', function(evt, xhr, status, error){
+          var responseObject = $.parseJSON(xhr.responseText);
+
+          $flash.empty();
+          $.each(responseObject, function(k, v){
+            $flash.append('<div class="errors rounded-s"><strong>' + k + '</strong> ' + v + '</div>');
+          })
+        })
+        .bind('ajax:complete', function(evt, xhr, status, error) {
+          alert('delete completed');
+        });
     });
     
