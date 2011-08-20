@@ -1,5 +1,5 @@
 %article.form
-  = form_for @transaction, remote:true, html: {'data-type' => 'json'} do |f|
+  = form_for @transaction, remote:true, html:{'data-type' => 'json'} do |f|
     .field
       = f.text_field :group, value:journal.group.name, readonly:'readonly', class:'hidden'
     .field
@@ -8,7 +8,7 @@
       = f.text_area :notes, rows:'3', required:'required', placeholder:'transaction description (can use #tags)', class:'rounded-s'
     .actions.right
       .buttons
-        = f.submit
+        = f.submit disable_with:"Submitting..."
       
 :javascript
   $(function() {
