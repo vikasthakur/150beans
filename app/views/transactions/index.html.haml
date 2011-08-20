@@ -2,6 +2,8 @@
   %h1 Transactions
   
   %section.journal.rounded-m.grid_7.alpha
-    = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => @journal, :limit => 20 }
+    = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => @journal }
+    = paginate @transactions
+    
     .links.right
-      =link_to "back", saved_return_to
+      =link_to "home", home_path

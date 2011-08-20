@@ -2,13 +2,11 @@ class TransactionsController < ApplicationController
   respond_to :html, :json  
 
   def index
-    max = 20
-    max = params[:limit].to_i if params[:limit].to_i
-    
     @journal = Journal.find(params[:journal_id]) if params[:journal_id]
     @transactions = Transaction.rev_chrono
     @transactions = @transactions.for_journal(params[:journal_id]) if params[:journal_id]
-    respond_with(@transactions.limit(max))
+    @transactions = @transactions.page params[:page]
+    respond_with(@transactions)
   end
   
   # GET /transactions/1/edit

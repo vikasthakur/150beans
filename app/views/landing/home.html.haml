@@ -5,7 +5,7 @@
     %section.journal.rounded-m.grid_7.alpha
       %h1= "#{g.name} journal"
       = render :partial => 'transactions/form', :locals => { :journal => g.journal }
-      = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => g.journal, :limit => 8 }
+      = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => g.journal }
       .links.right
         =link_to "all", transactions_path(:journal_id => g.journal.id)
 

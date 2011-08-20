@@ -28,6 +28,7 @@ gem 'capistrano'
 gem 'haml'
 gem 'omniauth'
 gem 'cancan'
+gem 'kaminari'
 
 group :test do
   # Pretty printed test output

@@ -19,11 +19,7 @@
     $(function () {
       var $flash = $('.flash');
 
-      $.getJSON("#{transactions_path(format:"json")}",
-        {
-          journal_id:"#{journal.id}", 
-          limit:"#{limit}"
-        },
+      $.getJSON("#{transactions_path(format:"json")}", {journal_id:"#{journal.id}"},
         function(data) {
           $("#transactions_#{journal.id}").html($("#transaction_template_#{journal.id}").tmpl(data));
         }
