@@ -1,5 +1,5 @@
 %article.form
-  = form_for (@transaction) do |f|
+  = form_for @transaction, remote:true, html: {'data-type' => 'json'} do |f|
     .field
       = f.text_field :group, value:journal.group.name, readonly:'readonly', class:'hidden'
     .field
@@ -11,35 +11,32 @@
         = f.submit
       
 :javascript
-  $(function() {    
-    $('.flash').ajaxError(function(e, jqxhr, settings, exception) {
-      $(this).append('<div class="errors rounded-s">Errors: '+jqxhr.responseText+'</div>' );
-    });
-
+  $(function() {
+    var $flash = $('.flash');
+    
     $('#transaction_notes').focusin(function() {
       $(this).css('background-color','#e5fff3');
     });
     $('#transaction_notes').focusout(function() {
       $(this).css('background-color','#fff');
     });
-    
-    $('#new_transaction').submit(function(e) {
-      /* stop form from submitting normally */
-      e.preventDefault();
-      $('.flash').empty();
 
-      var ready = true;
-                
-      if (ready) {
-        $.post('#{transactions_path(format:"json")}', $(this).serialize(), function(data) {
-          journal = data.transaction.journal_id;
-          $('#transactions_'+journal).prepend($('#transaction_template_'+journal).tmpl(data));
-          $('#new_transaction').each(function() {this.reset();});
+    $('#new_transaction')
+      .bind('ajax:success', function(evt, data, status, xhr){
+        var $this = $(this);
+        var jid = data.transaction.journal_id;
+
+        $('#transactions_'+jid).prepend($('#transaction_template_'+jid).tmpl(data));
+        $('#new_transaction').each(function() {this.reset();});
+        $flash.empty();
+      })
+      .bind('ajax:error', function(evt, xhr, status, error){
+        var responseObject = $.parseJSON(xhr.responseText);
+        $flash.empty();
+
+        $.each(responseObject, function(k, v){
+          $flash.append('<div class="errors rounded-s"><strong>' + k + '</strong> ' + v + '</div>');
         })
-        .error(function() {
-        });
-      } else {
-        $('#flash').append('<div class="error rounded-s">what do you want me to do with a blank entry?</div>');
-      }
     });
+        
   });

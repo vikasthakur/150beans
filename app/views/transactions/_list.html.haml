@@ -9,9 +9,12 @@
         %li.notes.rounded-m ${transaction.desc}
         %li.tags ${transaction.tags}
         %li.created-at ${transaction.created_at}
+      .actions
+        %a(class="edit" href="/transactions/${transaction._id}/edit")edit
+        %a(class="delete" href="/transactions/${transaction._id}.json" data-confirm="Are you sure" data-method="delete" data-remote="true" data-type="json" rel="nofollow")delete
     
   %ol.list(id="transactions_#{journal.id}" class="latest")
-    
+  
   :javascript
     $(function () {
       $.getJSON("#{transactions_path(format:"json")}",
@@ -23,5 +26,9 @@
           $("#transactions_#{journal.id}").html($("#transaction_template_#{journal.id}").tmpl(data));
         }
       );
+      
+      $('.transaction a[data-method="delete"]').bind('ajax:success', function() {
+        $(this).closest('article').fadeOut();
+      });
     });
     
