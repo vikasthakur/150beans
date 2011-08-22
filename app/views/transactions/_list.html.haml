@@ -1,4 +1,4 @@
-%section.transactions
+%section.transactions(id="transactions_#{journal.id}")
   %script(type="text/x-jquery-tmpl" id="transaction_template_#{journal.id}")
     %article.transaction
       %ul
@@ -25,14 +25,14 @@
         }
       );
       
-      $('.transaction .delete')
-        .live('ajax:success', function(evt, data, status, xhr){
+      $('#transactions_#{journal.id}')
+        .delegate('.delete', 'ajax:success', function(evt, data, status, xhr){
           $(this).closest('article').fadeOut('slow', function() {$(this).remove()});
 
           $flash.empty();
           $flash.append('<div class="alert rounded-s">transaction deleted</div>');
         })
-        .live('ajax:error', function(evt, xhr, status, error){
+        .delegate('.delete','ajax:error', function(evt, xhr, status, error){
           console.log("ajax:error");
           var responseObject = $.parseJSON(xhr.responseText);
 
