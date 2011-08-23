@@ -14,6 +14,7 @@ gem 'execjs'
 gem 'therubyracer'
 
 gem 'jquery-rails'
+gem "jquery-tmpl-rails"
 
 # Use unicorn as the web server
 # gem 'unicorn'

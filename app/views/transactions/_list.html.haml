@@ -10,6 +10,7 @@
         %li.tags ${transaction.tags}
         %li.created-at ${transaction.created_at}
       .actions
+        = link_to "edit", "#{url_for(action:'create', controller:'transactions')}/${transaction._id}", class:"edit", remote:true
         %a(class="edit" data-remote="true" href="/transactions/${transaction._id}/edit")edit
         %a(class="delete" href="/transactions/${transaction._id}" data-confirm="Are you sure" data-method="delete" data-remote="true" data-type="json" rel="nofollow")delete
     
