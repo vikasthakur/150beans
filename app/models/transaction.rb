@@ -19,6 +19,8 @@ class Transaction
   scope :for_journal, ->(journal) { where(journal_id: journal) }
   scope :rev_chrono, order_by([[:date, :desc], [:created_at, :desc]])
   scope :chrono, order_by([[:date, :asc], [:created_at, :asc]])
+  scope :mtd, where(:date.gte => Date.today.beginning_of_month, :date.lte => Date.today)
+  scope :ytd, where(:date.gte => Date.today.beginning_of_year, :date.lte => Date.today)
   
   belongs_to :journal
   
