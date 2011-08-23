@@ -1,18 +1,18 @@
+%script(type="text/x-jquery-tmpl" id="transaction_template_#{journal.id}")
+  %article.transaction
+    %ul
+      %li.date ${transaction.date}
+      %li.amount 
+        %span.currency.rounded-s(class="${transaction.currency}") ${transaction.currency}
+        %span ${transaction.amount}
+      %li.notes.rounded-m ${transaction.desc}
+      %li.tags ${transaction.tags}
+      %li.created-at ${transaction.created_at}
+    .actions
+      %a(class="edit" data-remote="true" href="/transactions/${transaction._id}/edit")edit
+      %a(class="delete" href="/transactions/${transaction._id}" data-confirm="Are you sure" data-method="delete" data-remote="true" data-type="json" rel="nofollow")delete
+  
 %section.transactions(id="transactions_#{journal.id}")
-  %script(type="text/x-jquery-tmpl" id="transaction_template_#{journal.id}")
-    %article.transaction
-      %ul
-        %li.date ${transaction.date}
-        %li.amount 
-          %span.currency.rounded-s(class="${transaction.currency}") ${transaction.currency}
-          %span ${transaction.amount}
-        %li.notes.rounded-m ${transaction.desc}
-        %li.tags ${transaction.tags}
-        %li.created-at ${transaction.created_at}
-      .actions
-        %a(class="edit" data-remote="true" href="/transactions/${transaction._id}/edit")edit
-        %a(class="delete" href="/transactions/${transaction._id}" data-confirm="Are you sure" data-method="delete" data-remote="true" data-type="json" rel="nofollow")delete
-    
   %ol.list(id="transactions_#{journal.id}" class="latest")
   
   :javascript

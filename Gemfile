@@ -30,6 +30,7 @@ gem 'haml'
 gem 'omniauth'
 gem 'cancan'
 gem 'kaminari'
+gem 'mongoid_taggable_with_context'
 
 group :test do
   # Pretty printed test output

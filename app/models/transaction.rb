@@ -3,12 +3,19 @@
 class Transaction
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::TaggableWithContext
+  # automatically adds real time aggregations to all tag contexts
+  include Mongoid::TaggableWithContext::AggregationStrategy::RealTime
 
   field :date, type: Date
   field :amount, type: BigDecimal
   field :currency, type: String
   field :notes, type: String
   
+  #tags
+  taggable # default 'tags' context
+  taggable :locations # additional 'locations' context
+    
   scope :for_journal, ->(journal) { where(journal_id: journal) }
   scope :rev_chrono, order_by([[:date, :desc], [:created_at, :desc]])
   scope :chrono, order_by([[:date, :asc], [:created_at, :asc]])
@@ -30,12 +37,13 @@ class Transaction
   end
   
   def as_json(options={})
-    {:transaction => super(:except => [:notes, :updated_at, :group], :methods => [:desc]) }
+    {:transaction => super(:except => [:notes, :updated_at, :group, :tags_array, :locations_array], :methods => [:desc]) }
   end
 
   private
     def parse_notes
-      tags = self.notes.scan(/#[^ ]+/)
+      self.tags = self.notes.scan(/#[^ ]+/).join(' ')
+      self.locations = self.notes.scan(/@[^ ]+/).join(' ')
       
       match = self.notes.downcase.match(/\^(now|today|yesterday|yes|-\d+|[^ ]+)/)
       if match.nil? || %w[now today].include?(match[1])
