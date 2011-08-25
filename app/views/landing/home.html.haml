@@ -1,33 +1,36 @@
-%section.home
-  %h1 User Home
-  
-  - current_user.groups.each do |g|
-    %section.group.rounded-m
-      %section.journal.grid_7
-        %h1= "#{g.name} journal"
-        = render :partial => 'transactions/form', :locals => { :journal => g.journal }
-        = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => g.journal }
-        .links.right
-          = link_to "all", transactions_path(:journal_id => g.journal.id)
-  
-      %section.sidebar.grid_9.omega
-        %h1 Spending Summary - #{Time.now.strftime("%m/%d/%Y")}
-        %section.summary
-          %h1 MTD
-          %h2 Total Spent: #{g.journal.total_mtd}
-          %h2 Top10 Tags
-          - g.journal.top_tags_by_value_mtd.each do |item|
-            %article.category
-              %span.tag= item[1]
-              %span.amount= item[0]
+- current_user.groups.each do |g|
+  .group.rounded-m
+    %article.journal.grid_7
+      %header
+        %h1 #{g.name} journal
+      = render :partial => 'transactions/form', :locals => { :journal => g.journal }
+      = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => g.journal }
+      .links.right
+        = link_to "all", transactions_path(:journal_id => g.journal.id)
 
-        %section.summary
+    %aside.grid_9.omega
+      %header
+        %h1 Spending Summary
+      %article.summary
+        %header
+          %h1 MTD
+          %time(datetime="#{Date.today}") #{Time.now.strftime("%b %d, %Y")}
+        %h1 Total Spent: #{g.journal.total_mtd}
+        %h1 Top10 Tags
+        - g.journal.top_tags_by_value_mtd.each do |item|
+          %article.category
+            %span.tag= item[1]
+            %span.amount= item[0]
+
+      %article.summary
+        %header
           %h1 YTD
-          %h2 Total Spent: #{g.journal.total_ytd}
-          %h2 Top10 Tags
-          - g.journal.top_tags_by_value_ytd.each do |item|
-            %article.category
-              %span.tag= item[1]
-              %span.amount= item[0]
-              
-      .clear
+          %time(datetime="#{Date.today}") #{Time.now.strftime("%b %d, %Y")}
+        %h1 Total Spent: #{g.journal.total_ytd}
+        %h1 Top10 Tags
+        - g.journal.top_tags_by_value_ytd.each do |item|
+          %article.category
+            %span.tag= item[1]
+            %span.amount= item[0]
+            
+    .clear
