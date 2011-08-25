@@ -1,6 +1,4 @@
-$light-grey:#E9E9E9;
-$medium-grey:#A9A9A9;
-$dark-grey:#333;
+@import "../themes/b150.css.scss";
 
 .clear{clear:both;}
 .hidden{display:none;}
@@ -9,13 +7,10 @@ $dark-grey:#333;
 .rounded-m {-moz-border-radius: 0.75em;-webkit-border-radius: 0.75em;border-radius: 0.75em;}
 .rounded-l {-moz-border-radius: 1em;-webkit-border-radius: 1em;border-radius: 1em;}
 
-html, body {margin:0 0;width:100%;height:100%;color:$dark-grey;}
+html, body {margin:0 0;width:100%;height:100%;color:$reg-text;}
 #container {min-height:100%;position:relative;height: auto !important;}
 
 section.flash {
-  $red:#C80000;
-  $yellow:#F3F241;
-  $green:#06C000;
 
   margin-bottom:1em;
   .errors, .alert, .notice {
@@ -44,7 +39,7 @@ nav.usernav {
 
   background:#333;
   color:#999;
-  border-bottom:1px solid #FF8723;
+  border-bottom:1px solid $b150-orange;
   
   a, a:hover, a:active {
     color:#eee;
@@ -69,7 +64,7 @@ nav.usernav {
     top:3px;
     right:10px;
     img {
-      border:1px solid #666;
+      border:1px solid $border-color;
       margin-top:2px;
     }
   }

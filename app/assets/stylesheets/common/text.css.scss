@@ -1,16 +1,14 @@
+@import "../themes/b150.css.scss";
+
 .left{text-align:left;}
 .right{text-align:right;}
 
 body {
-  line-height: 18px;
   font-size: 16px;
   font-family: "Lucida Grande","Lucida Sans",Georgia,Helvetica,Arial,sans-serif;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family:"Gill Sans","Gill Sans MT","Helvetica Neue","Helvetica",Arial,sans-serif;
+  margin-bottom:0.2em;
 }
-input, textarea{
-  font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,arial,sans-serif;
-}
-
 

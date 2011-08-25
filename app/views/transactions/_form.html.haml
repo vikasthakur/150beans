@@ -8,7 +8,8 @@
       = f.text_area :notes, rows:'3', required:'required', placeholder:'transaction description (can use #tags)', class:'rounded-s'
     .actions.right
       .buttons
-        = f.submit disable_with:"Submitting..."
+        = f.submit disable_with:"Submitting...", class:"positive"
+      .clear
       
 :javascript
   $(function() {

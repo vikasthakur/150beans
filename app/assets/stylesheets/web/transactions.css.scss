@@ -1,21 +1,7 @@
-// Place all the styles related to the transactions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-$light-grey:#C9C9C9;
-$medium-grey:#999;
-$dark-grey:#333;
+@import "../themes/b150.css.scss";
 
 .journal {
   clear:both;
-    
-  .form {
-    // overflow fix
-    .offix {
-      padding-right:14px;
-    }
-    textarea {width:100%;height:80px;padding:4px 4px;resize:none;border:3px solid $light-grey;}
-  }
   
   .transactions {font-size:0.8em;}
 
@@ -23,7 +9,7 @@ $dark-grey:#333;
     padding:1em 0;
     border-bottom:1px dashed #ccc;
     li {display:inline-block;}
-    .date {color:$medium-grey;width:28%;}
+    .date {color:$lite-text;width:28%;}
     .amount {width:70%;text-align:right;}
     .currency {padding:0 0.5em;text-align:center;font-size:0.8em;font-weight:bold;vertical-align:text-top;}
     .CNY {background:#DF7474;}
@@ -43,13 +29,8 @@ $dark-grey:#333;
   .grouping-date {
     padding: 0.25em 0;
     text-align: center;
-    background: $light-grey;
+    background: $block-color;
     margin-top: 1.6em;
-    border: 1px solid $light-grey;
+    border: 1px solid $border-color;
   }
-}
-
-.journal .entry {
-  form {margin:0.5em 0 1em;}
-  textarea {width:100%;}
 }
