@@ -25,7 +25,6 @@ class Transaction
   belongs_to :journal
   
   validates_presence_of :date, :amount, :currency, :notes
-  
   before_validation :parse_notes
   
   # description with dates and amount stripped

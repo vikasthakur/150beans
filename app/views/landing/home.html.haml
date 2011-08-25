@@ -8,8 +8,15 @@
         = render :partial => 'transactions/form', :locals => { :journal => g.journal }
         = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => g.journal }
         .links.right
-          =link_to "all", transactions_path(:journal_id => g.journal.id)
+          = link_to "all", transactions_path(:journal_id => g.journal.id)
   
       %section.sidebar.grid_9.omega
-        %h1 spending
+        %h1 Spending Summary
+        %section.summary
+          %h1 Top10 - month-to-date
+          - g.journal.top_tags_by_value_mtd.each do |item|
+            %article.category
+              %span.tag= item[1]
+              %span.amount= item[0]
+              
       .clear

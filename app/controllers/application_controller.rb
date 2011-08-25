@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
   before_filter :save_return_to
 
   def adjust_format_for_mobile_devices
-    if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|Android|Froyo|Eclair)/]
-      request.format = :mobile
+    if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|BlackBerry|Android|Mobile)/]
+      # request.format = :mobile
     elsif request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPad|PlayBook)/]
       # request.format = :tablet
     end
