@@ -37,7 +37,7 @@ section.flash {
   }
 }
 
-section.usernav {
+nav.usernav {
   clear:both;
   width:100%;
   height:48px;
@@ -74,20 +74,15 @@ section.usernav {
     }
   }
 }
-section.main {
+.main {
   clear:both;
   min-height:100%;
-  margin:1em auto 2em;
+  margin:1em auto;
 }
 
-section.footer {
+footer {
   clear:both;
-	position:absolute;
-	bottom:0;
   width:100%;
-  font-size:10px;
-  
-  .block {
-    text-align:center;
-  }
+  font-size:10px;  
+  text-align:center;
 }

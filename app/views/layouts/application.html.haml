@@ -10,10 +10,8 @@
   %body.web
     #container
       = render :partial => 'shared/usernav'
-      %section.main.container_16
+      .main.container_16
         = render :partial => 'shared/flash', :locals => { :flash => flash }
         = yield
         = yield :scripts
-        .clear
-      .clear
       = render :partial => 'shared/footer'
