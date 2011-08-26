@@ -1,5 +1,5 @@
 %article.form
-  = form_for @transaction, remote:true, html:{'data-type' => 'json'} do |f|
+  = form_for @transaction, remote:true, html:{'data-type' => 'json', 'data-success-msg' => 'transaction added'} do |f|
     .field
       = f.text_field :group, value:journal.group.name, readonly:'readonly', class:'hidden'
     .field
@@ -12,15 +12,6 @@
       
 :javascript
   $(function() {
-    var $flash = $('.flash');
-    
-    $('#transaction_notes').focusin(function() {
-      $(this).css('background-color','#e5fff3');
-    });
-    $('#transaction_notes').focusout(function() {
-      $(this).css('background-color','#fff');
-    });
-
     $('#new_transaction')
       .bind('ajax:success', function(evt, data, status, xhr){
         var $this = $(this);
@@ -28,15 +19,5 @@
 
         $('#transaction_template_'+jid).tmpl(data).hide().prependTo($('#transactions_'+jid)).fadeIn("slow");
         $('#new_transaction').each(function() {this.reset();});
-        $flash.empty();
-        $flash.append('<div class="notice rounded-s">transaction added</div>');
-      })
-      .bind('ajax:error', function(evt, xhr, status, error){
-        var responseObject = $.parseJSON(xhr.responseText);
-        $flash.empty();
-
-        $.each(responseObject, function(k, v){
-          $flash.append('<div class="errors rounded-s"><strong>' + k + '</strong> ' + v + '</div>');
-        })
       });
   });
