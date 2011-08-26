@@ -16,8 +16,9 @@ $border-color:$light-grey;
 $block-color:lighten($light-grey, 15%);
 $reg-text:$dark-grey;
 $lite-text:$medium-grey;
-$reg-size:16px;
+$reg-size:14px; // TODO set to 16px for tablets
 
-$reg-fonts:"Lucida Grande","Lucida Sans",Georgia,Helvetica,Arial,sans-serif;
-$header-fonts:"Gill Sans","Gill Sans MT","Helvetica Neue","Helvetica",Arial,sans-serif;
-$form-fonts:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,arial,sans-serif;
+$reg-fonts:"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+$form-fonts:$reg-fonts;
+$header-fonts:Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif; // SERIF
+// $header-fonts:Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif; // SANS-SERIF
