@@ -1,14 +1,22 @@
-$light-grey:#C9C9C9;
-$medium-grey:#999;
-$dark-grey:#333;
+$offwhite:darken(#fff,20%);
+$grey:#888;
+$light-grey:lighten($grey, 25%);
+$medium-grey:lighten($grey, 5%);
+$dark-grey:darken($grey, 25%);
 $red:#C80000;
 $yellow:#F3F241;
 $green:#06C000;
+$dark-green:#568C24;
+$dark-red:#C63B2D;
 
 $b150-orange:#F36E00;
 $b150-blue:#1700F3;
 
 $border-color:$light-grey;
-$block-color:lighten($light-grey, 10%);
+$block-color:lighten($light-grey, 15%);
 $reg-text:$dark-grey;
 $lite-text:$medium-grey;
+
+$reg-fonts:"Lucida Grande","Lucida Sans",Georgia,Helvetica,Arial,sans-serif;
+$header-fonts:"Gill Sans","Gill Sans MT","Helvetica Neue","Helvetica",Arial,sans-serif;
+$form-fonts:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,arial,sans-serif;

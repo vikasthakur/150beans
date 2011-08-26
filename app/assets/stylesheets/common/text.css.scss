@@ -3,12 +3,7 @@
 .left{text-align:left;}
 .right{text-align:right;}
 
-body {
-  font-size: 16px;
-  font-family: "Lucida Grande","Lucida Sans",Georgia,Helvetica,Arial,sans-serif;
-}
-h1, h2, h3, h4, h5, h6 {
-  font-family:"Gill Sans","Gill Sans MT","Helvetica Neue","Helvetica",Arial,sans-serif;
-  margin-bottom:0.2em;
-}
+body {font-size:16px;font-family: $reg-fonts;color:$reg-text}
+h1, h2, h3, h4, h5, h6 {font-family:$header-fonts;}
+input, textarea {font-family:$form-fonts;}
 

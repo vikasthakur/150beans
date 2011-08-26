@@ -7,11 +7,10 @@
 .rounded-m {-moz-border-radius: 0.75em;-webkit-border-radius: 0.75em;border-radius: 0.75em;}
 .rounded-l {-moz-border-radius: 1em;-webkit-border-radius: 1em;border-radius: 1em;}
 
-html, body {margin:0 0;width:100%;height:100%;color:$reg-text;}
+html, body {margin:0 0;width:100%;height:100%;}
 #container {min-height:100%;position:relative;height: auto !important;}
 
 section.flash {
-
   margin-bottom:1em;
   .errors, .alert, .notice {
     padding:1em;
@@ -69,7 +68,7 @@ nav.usernav {
     }
   }
 }
-.main, .ipsum {
+.main {
   clear:both;
   min-height:100%;
 }
