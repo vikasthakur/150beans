@@ -9,8 +9,8 @@ $(function() {
   });
 
   $('form')
-    .bind('ajax:beforeSend', function(evt, data, status, xhr){
-      $flash.empty().fadeOut();
+    .bind('ajax:beforeSend', function(evt, xhr, settings){
+      $flash.slideUp().empty();
     })
     .bind('ajax:success', function(evt, data, status, xhr){
       $flash.append('<div class="notice rounded-s">'+$(this).attr("data-success-msg")+'</div>');
@@ -22,6 +22,6 @@ $(function() {
       })
     })
     .bind('ajax:complete', function() {
-      $flash.fadeIn();
+      $flash.slideDown();
     });
 });
