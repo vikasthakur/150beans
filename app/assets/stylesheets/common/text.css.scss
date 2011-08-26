@@ -3,7 +3,7 @@
 .left{text-align:left;}
 .right{text-align:right;}
 
-body {font-size:16px;font-family: $reg-fonts;color:$reg-text}
+body {font-family:$reg-fonts;color:$reg-text;font-size:$reg-size;}
 h1, h2, h3, h4, h5, h6 {font-family:$header-fonts;}
-input, textarea {font-family:$form-fonts;}
+input, textarea {font-family:$form-fonts;font-size:$reg-size;}
 
