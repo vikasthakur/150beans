@@ -19,7 +19,7 @@ jQuery ($) ->
       flash.slideUp().empty()
 
     .delegate '.delete', 'ajax:success', (evt, data, status, xhr) ->
-      $(this).closest('li').fadeOut('slow', -> $(this).remove())
+      $(this).closest('.transaction').fadeOut('slow', -> $(this).remove())
       flash.append '<div class="alert rounded-s">transaction deleted</div>'
         
     .delegate '.delete', 'ajax:error', (evt, xhr, status, error) ->
