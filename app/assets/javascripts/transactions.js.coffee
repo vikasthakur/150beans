@@ -6,7 +6,14 @@
 jQuery ($) ->
   flash = $ '.flash'
   
-  # hooks to handle ajax delete of transaction
+  # hooks to handle new transaction form
+  ($ '#new_transaction')
+    .bind 'ajax:success', (evt, data, status, xhr) ->
+      journal = data.transaction.journal_id
+      $('#transaction_template_'+journal).tmpl(data).hide().prependTo($('#'+journal+" .list")).fadeIn("slow")
+      $('#new_transaction').each -> this.reset()
+  
+  # hooks to handle transaction (ajax) delete
   ($ '.transactions')
     .delegate '.delete', 'ajax:beforeSend', (evt, xhr, settings) ->
       flash.slideUp().empty()
@@ -19,4 +26,5 @@ jQuery ($) ->
       $.each $.parseJSON(xhr.responseText), (k, v) ->
         flash.append '<div class="errors rounded-s"><strong>' + k + '</strong> ' + v + '</div>'
             
-    .delegate '.delete', 'ajax:complete', -> flash.slideDown()
+    .delegate '.delete', 'ajax:complete', -> 
+      flash.slideDown()

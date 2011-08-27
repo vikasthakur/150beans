@@ -10,14 +10,3 @@
       = f.submit disable_with:"Submitting...", class:"positive"
     .clear
       
-:javascript
-  $(function() {
-    $('#new_transaction')
-      .bind('ajax:success', function(evt, data, status, xhr){
-        var $this = $(this);
-        var jid = data.transaction.journal_id;
-
-        $('#transaction_template_'+jid).tmpl(data).hide().prependTo($('#'+jid+" .list")).fadeIn("slow");
-        $('#new_transaction').each(function() {this.reset();});
-      });
-  });
