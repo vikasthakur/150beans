@@ -4,29 +4,29 @@
 #
 
 jQuery ($) ->
-  flash = $ '.flash'
+  flash = $('.flash')
 
-  # TODO wrap in closure
   # hooks to load transactions list via JSON
+  # TODO wrap in closure
   # TODO cleanup var extraction
-  journal = ($ 'section.transactions').attr("id")
-  url = ($ "##{journal}").attr("data-url")
-  page = ($ "##{journal}").attr("data-page")
-  filter = ($ "##{journal}").attr("data-filter")
-  tags = ($ "##{journal}").attr("data-tags")
   # TODO check if list present
+  journal = $('section.transactions').attr("id")
+  url = $("##{journal}").attr("data-url")
+  page = $("##{journal}").attr("data-page")
+  filter = $("##{journal}").attr("data-filter")
+  tags = $("##{journal}").attr("data-tags")
   $.getJSON url, {journal:journal, filter:filter, page:page, tags:tags}, (data,status,xhr) ->
-    ($ "##{journal} .list").html(($ "#transaction_template_#{journal}").tmpl(data))
+    $("##{journal} .list").html(($ "#transaction_template_#{journal}").tmpl(data))
   
   # hooks to handle new transaction form
-  ($ '#new_transaction')
+  $('#new_transaction')
     .bind 'ajax:success', (evt, data, status, xhr) ->
       journal = data.transaction.journal_id
       $("#transaction_template_#{journal}").tmpl(data).hide().prependTo($("##{journal} .list")).fadeIn("slow")
       $('#new_transaction').each -> this.reset()
   
   # hooks to handle transaction (ajax) delete
-  ($ '.transactions')
+  $('.transactions')
     .delegate '.delete', 'ajax:beforeSend', (evt, xhr, settings) ->
       flash.slideUp().empty()
 

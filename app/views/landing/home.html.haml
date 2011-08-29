@@ -6,7 +6,7 @@
       = render :partial => 'transactions/form', locals:{ journal:g.journal }
       = render :partial => 'transactions/list', locals:{ filter:"latest", tags:"", journal:g.journal._id, page:params[:page] }
       .links.right
-        = link_to "all", transactions_path(journal_id:g.journal.id)
+        = link_to "all", transactions_path(journal:g.journal.id)
 
     %aside.grid_9.omega
       %header
