@@ -2,10 +2,15 @@ class TransactionsController < ApplicationController
   respond_to :html, :json  
 
   def index
-    @journal = Journal.find(params[:journal_id]) if params[:journal_id]
+    @journal = Journal.find(params[:journal]) if params[:journal]
     @transactions = Transaction.rev_chrono
-    @transactions = @transactions.for_journal(params[:journal_id]) if params[:journal_id]
-    @transactions = @transactions.page params[:page]
+    @transactions = @transactions.for_journal(params[:journal]) if params[:journal]
+    
+    if params[:filter] == 'tagged' && params[:tags]
+      @transactions = @transactions.with_tag(params[:tags])
+    end
+    
+    @transactions = @transactions.page params[:page] unless params[:filter] == 'latest'
     respond_with(@transactions)
   end
   

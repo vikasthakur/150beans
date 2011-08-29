@@ -3,10 +3,10 @@
     %article.journal.grid_7
       %header
         %h1 #{g.name} journal
-      = render :partial => 'transactions/form', :locals => { :journal => g.journal }
-      = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => g.journal }
+      = render :partial => 'transactions/form', locals:{ journal:g.journal }
+      = render :partial => 'transactions/list', locals:{ filter:"latest", tags:"", journal:g.journal._id, page:params[:page] }
       .links.right
-        = link_to "all", transactions_path(:journal_id => g.journal.id)
+        = link_to "all", transactions_path(journal_id:g.journal.id)
 
     %aside.grid_9.omega
       %header
@@ -19,7 +19,7 @@
         %h1 Top10 Tags
         - g.journal.top_tags_by_value_mtd.each do |item|
           %article.category
-            %span.tag= item[1]
+            %span.tag= link_to item[1], transactions_path(journal:g.journal,filter:"tagged",tags:item[1])
             %span.amount= item[0]
 
       %article.summary
@@ -30,7 +30,7 @@
         %h1 Top10 Tags
         - g.journal.top_tags_by_value_ytd.each do |item|
           %article.category
-            %span.tag= item[1]
+            %span.tag= link_to item[1], transactions_path(journal:g.journal,filter:"tagged",tags:item[1])
             %span.amount= item[0]
             
     .clear

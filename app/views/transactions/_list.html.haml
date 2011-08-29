@@ -1,4 +1,4 @@
-%script(type="text/x-jquery-tmpl" id="transaction_template_#{journal.id}")
+%script(type="text/x-jquery-tmpl" id="transaction_template_#{journal}")
   %li.transaction
     %article(id="${transaction._id}")
       %span.date ${transaction.date}
@@ -12,14 +12,5 @@
         %a(class="edit" data-remote="true" href="/transactions/${transaction._id}/edit")edit
         %a(class="delete" href="/transactions/${transaction._id}" data-confirm="Are you sure" data-method="delete" data-remote="true" data-type="json" rel="nofollow")delete
   
-%section.transactions(id="#{journal.id}")
-  %ol.list.latest
-  
-:javascript
-  $(function () {
-    $.getJSON("#{transactions_path(format:"json")}", {journal_id:"#{journal.id}"},
-      function(data) {
-        $("##{journal.id} .list").html($("#transaction_template_#{journal.id}").tmpl(data));
-      });
-    
-  });
+%section.transactions(id="#{journal}" data-page="#{page}" data-filter="#{filter}" data-tags="#{tags}" data-url="#{transactions_path(format:"json")}")
+  %ol.list(class="#{filter}")

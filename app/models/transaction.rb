@@ -21,6 +21,8 @@ class Transaction
   scope :chrono, order_by([[:date, :asc], [:created_at, :asc]])
   scope :mtd, where(:date.gte => Date.today.beginning_of_month, :date.lte => Date.today)
   scope :ytd, where(:date.gte => Date.today.beginning_of_year, :date.lte => Date.today)
+  scope :with_tag, ->(tag) { tagged_with(:tags, tag) }
+  scope :at_location, ->(location) { tagged_with(:locations, location) }
   
   belongs_to :journal
   

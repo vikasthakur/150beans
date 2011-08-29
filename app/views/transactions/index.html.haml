@@ -3,7 +3,7 @@
   %section.group.rounded-m
     %section.journal.grid_7
       %h1= "#{@journal.group.name} journal"
-      = render :partial => 'transactions/list', :locals => { :style => "grouped", :journal => @journal }
+      = render :partial => 'transactions/list', :locals => { filter:params["filter"], tags:params["tags"], journal:params[:journal], page:params[:page] }
       = paginate @transactions
     
       .links.right
