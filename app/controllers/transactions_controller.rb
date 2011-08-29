@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
       @transactions = @transactions.with_tag(params[:tags])
     end
     
-    @transactions = @transactions.page params[:page] unless params[:filter] == 'latest'
+    @transactions = @transactions.page params[:page]
     respond_with(@transactions)
   end
   
