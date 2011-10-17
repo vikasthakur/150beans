@@ -14,8 +14,8 @@ class SessionsController < ApplicationController
   
   def new
     # TODO redirect to login page for login method selector
-    # redirect_to '/auth/tsina'
-    redirect_to '/auth/twitter'
+    redirect_to '/auth/tsina'
+    # redirect_to '/auth/twitter'
   end
   
   def failure
