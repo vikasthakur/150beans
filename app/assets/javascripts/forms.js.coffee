@@ -1,3 +1,7 @@
+###
+--- forms.js.coffee ---
+###
+
 jQuery ($) ->
   flash = $('.flash')
 

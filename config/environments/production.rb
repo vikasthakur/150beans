@@ -16,6 +16,8 @@ Beans::Application.configure do
 
   # Specify the default JavaScript compressor
   config.assets.js_compressor  = :uglifier
+  # Specify the default CSS compressor
+  config.assets.css_compressor = :scss
 
   # Specifies the header that your server uses for sending files
   # (comment out if your front-end server doesn't support this)

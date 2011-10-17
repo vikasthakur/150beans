@@ -2,7 +2,7 @@
   .group.rounded-m
     %article.journal.grid_7
       %header
-        %h1 #{g.name} journal
+        %h1 #{g.name.capitalize} Journal
       = render :partial => 'transactions/form', locals:{ journal:g.journal }
       = render :partial => 'transactions/list', locals:{ filter:"latest", tags:"", journal:g.journal._id, page:params[:page] }
       .links.right

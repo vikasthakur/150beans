@@ -9,7 +9,7 @@
       %span.tags ${transaction.tags}
       %span.created-at ${transaction.created_at}
       .actions
-        %a(class="edit" data-remote="true" href="/transactions/${transaction._id}/edit")edit
+        %a(class="edit" data-remote="true" data-type="json" href="/transactions/${transaction._id}/edit")edit
         %a(class="delete" href="/transactions/${transaction._id}" data-confirm="Are you sure" data-method="delete" data-remote="true" data-type="json" rel="nofollow")delete
   
 %section.transactions(id="#{journal}" data-page="#{page}" data-filter="#{filter}" data-tags="#{tags}" data-url="#{transactions_path(format:"json")}")

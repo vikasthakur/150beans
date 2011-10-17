@@ -12,10 +12,11 @@ class Transaction
   field :currency, type: String
   field :notes, type: String
   
-  #tags
+  # tags
   taggable # default 'tags' context
   taggable :locations # additional 'locations' context
-    
+  
+  # common scopes
   scope :for_journal, ->(journal) { where(journal_id: journal) }
   scope :rev_chrono, order_by([[:date, :desc], [:created_at, :desc]])
   scope :chrono, order_by([[:date, :asc], [:created_at, :asc]])
@@ -29,7 +30,7 @@ class Transaction
   validates_presence_of :date, :amount, :currency, :notes
   before_validation :parse_notes
   
-  # description with dates and amount stripped
+  # short description with dates and amount stripped
   def desc
     s = self.notes
     match = s.downcase.match(/\^\d{4}-\d{2}-\d{2}/)
@@ -44,10 +45,32 @@ class Transaction
   end
 
   private
+    # => before_validation hook
+    # Parse and extract transaction details from the free-form text in notes field:
+    #   tags: keywords marked by the '#' hashtag
+    #   locations: locations marked by the '@' symbol
+    #   date:
+    #     - today: 'now', 'today', <none>
+    #     - yesterday: 'yesterday', 'yes'
+    #     - N days before today: '^-N' (ie. ^-1 = yesterday, ^-3 = 3 days ago, ^-7 = a week ago today)
+    #     - specified date (format y-m-d): July 8, 2011 = 2011/7/8 = 2011/07/08 = 2011-7-8 = 2011-07-08
+    #     - specified date (format m-d) - defaults to current year: July 8, 2011 = 7/8 = 7-8
+    #   amount:
+    #     - transaction amount prefixed by currency symbol or code: $22.78 = usd 22.78 = usd22.78 = USD22.78
+    #     - transaction amount postfixed by currency code: 22.78 usd = 22.78usd = 22.78USD
+    #     - transaction amount in format xxxx.xx with no currency markers: 22.78
+    #     - known currency symbols and codes:
+    #       - USD ($), GBP(£), EURO(€), CNY(¥), HKD, CAD
+    #       - RMB aliased to CNY
+    #       - defaults to CNY
     def parse_notes
+      # extract #keyword tags into the tags context
       self.tags = self.notes.scan(/#[^ ]+/).join(' ')
+      
+      # extract @location tags into the locations context
       self.locations = self.notes.scan(/@[^ ]+/).join(' ')
       
+      # extract 'date'
       match = self.notes.downcase.match(/\^(now|today|yesterday|yes|-\d+|[^ ]+)/)
       if match.nil? || %w[now today].include?(match[1])
         self.date = Date.today
@@ -72,6 +95,7 @@ class Transaction
       strip_from_notes_anycase(match.to_s) unless match.nil?
       self.notes = self.notes.strip + " ^#{self.date.to_s}"
       
+      # extract transaction amount and currency
       match = self.notes.match(/(\$|£|€|¥)[ ]*[^ ]+/)
       match = self.notes.upcase.match(/\d+\.?\d*[ ]+(RMB|CNY|USD|CAD|HKD|EUR|GBP)/) unless match
       match = self.notes.upcase.match(/(RMB|CNY|USD|HKD|CAD|EUR|GBP)[ ]*\d+\.?\d*/) unless match
@@ -90,6 +114,7 @@ class Transaction
           if %w[CNY USD HKD CAD EUR GBP].include? match[1]
             c = match[1]
           else
+            # TODO defaults should be extracted from per-user preferences
             c = "CNY"
           end
         end
@@ -101,6 +126,9 @@ class Transaction
       end
     end
     
+    # => Utility method
+    # Strips matching text (in any case) from notes field.
+    # TODO extract into text processing plug-in
     def strip_from_notes_anycase(target)
       index = self.notes.upcase.index(target.upcase)
       self.notes.slice!(index, target.length)

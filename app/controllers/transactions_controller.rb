@@ -1,6 +1,10 @@
 class TransactionsController < ApplicationController
-  respond_to :html, :json  
+  respond_to :html, :json, :js
 
+  # GET /transactions
+  # Optional Params:
+  #   journal=<journal.id>
+  #   tags=tag text
   def index
     @journal = Journal.find(params[:journal]) if params[:journal]
     @transactions = Transaction.rev_chrono
