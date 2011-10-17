@@ -1,4 +1,12 @@
 Beans::Application.routes.draw do
+  # make app available offline
+  offline = Rack::Offline.configure do
+    cache "assets/application.js"
+    cache "assets/application.css"
+    network "/"
+  end
+  match "/application.manifest" => offline
+    
   resources :transactions, :except => [:show, :new]
 
   # OmniAuth routes
