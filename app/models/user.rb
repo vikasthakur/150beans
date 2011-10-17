@@ -7,6 +7,8 @@ class User
   embeds_many :authorizations
   has_and_belongs_to_many :groups
   
+  after_create :create_default_group
+  
   def self.create_with_omniauth(auth)
     begin
       create! do |user|
@@ -29,5 +31,11 @@ class User
   
   def member_of?(group)
     groups.any? { |g| g.name == group }
+  end
+  
+  def create_default_group
+    g = Group.create!(:name => self.name)
+    self.groups << g
+    g.users << self
   end
 end
