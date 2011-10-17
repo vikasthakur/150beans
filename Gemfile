@@ -1,23 +1,22 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc5'
+gem 'rails', '3.1.0'
 
 # using mongoid instead of mysql or sqlite3
 gem "mongoid", "~> 2.0"
 gem "bson_ext", "~> 1.3"
 
 # Asset template engines
-gem 'sass-rails', "~> 3.1.0.rc"
-gem 'coffee-script'
-gem 'uglifier'
-gem 'execjs'
-gem 'therubyracer'
+group :assets do
+  gem 'sass-rails', "~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+#gem 'execjs'
+#gem 'therubyracer'
+end
 
 gem 'jquery-rails'
 gem "jquery-tmpl-rails"
-
-# Use unicorn as the web server
-# gem 'unicorn'
 
 # Deploy with Capistrano
 gem 'capistrano'
@@ -31,6 +30,8 @@ gem 'omniauth'
 gem 'cancan'
 gem 'kaminari'
 gem 'mongoid_taggable_with_context'
+gem 'rack-offline'
+gem 'json'
 
 group :test do
   # Pretty printed test output
