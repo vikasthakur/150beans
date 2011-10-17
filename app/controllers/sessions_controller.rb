@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  # auth returned by the service provider when authentication is succesful.
+  # auth returned by the service provider when authentication is successful.
   def create
     auth = request.env["omniauth.auth"]
     user = User.where("authorizations.provider" => auth['provider'], "authorizations.uid" => auth['uid']).first || User.create_with_omniauth(auth)
@@ -12,9 +12,10 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => "Signed out!"
   end
   
-  # TODO: login page
   def new
-    redirect_to '/auth/tsina'
+    # TODO redirect to login page for login method selector
+    # redirect_to '/auth/tsina'
+    redirect_to '/auth/twitter'
   end
   
   def failure
