@@ -1,0 +1,19 @@
+h1. 150Beans: a dead simple spending tracker
+
+150Beans is a beans-counting... err... spending tracker application designed with a simple Twitter-esque transaction entry UI. The app parses and extracts transaction details from the free-form text as follows:
+* tags: keywords marked by the '#' hashtag
+* locations: locations marked by the '@' symbol
+* date:
+** today: 'now', 'today', <none>
+** yesterday: 'yesterday', 'yes'
+** N days before today: '^-N' (ie. ^-1 = yesterday, ^-3 = 3 days ago, ^-7 = a week ago today)
+** specified date (format y-m-d): July 8, 2011 = 2011/7/8 = 2011/07/08 = 2011-7-8 = 2011-07-08
+** specified date (format m-d) - defaults to current year: July 8, 2011 = 7/8 = 7-8
+* amount:
+** transaction amount prefixed by currency symbol or code: $22.78 = usd 22.78 = usd22.78 = USD22.78
+** transaction amount postfixed by currency code: 22.78 usd = 22.78usd = 22.78USD
+** transaction amount in format xxxx.xx with no currency markers: 22.78
+** known currency symbols and codes:
+*** USD ($), GBP(£), EURO(€), CNY(¥), HKD, CAD
+*** RMB aliased to CNY
+*** defaults to CNY
