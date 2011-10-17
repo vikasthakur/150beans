@@ -17,3 +17,7 @@ h1. 150Beans: a dead simple spending tracker
 *** USD ($), GBP(£), EURO(€), CNY(¥), HKD, CAD
 *** RMB aliased to CNY
 *** defaults to CNY
+
+h2. User Authentication
+
+150Beans uses OmniAuth for authentications via Twitter and Sina Weibo.
